@@ -1,5 +1,5 @@
 window {
-    background-color: rgba (36, 47, 79, 0.95);
+    background-color: rgba (31, 32, 34, 0.90);
     color: #eeeeee
 }
 
@@ -14,6 +14,9 @@ button, image {
 }
 
 button:hover {
+    background-color: rgba (255, 255, 255, 0.1)
+}
+button:focus {
     background-color: rgba (255, 255, 255, 0.1)
 }
 
