@@ -4,15 +4,13 @@
 depends = []
 
 [default.files]
-"bg.png" = { target = "~/.config/bg.png", type = "symbolic" }
-"bg2.png" = { target = "~/.config/bg2.png", type = "symbolic" }
+background = { target = "~/.config/", type = "symbolic" }
 bspwm = "~/.config/bspwm"
 espanso = ""
 flameshot = "~/.config/flameshot"
 foot = "~/.config/foot"
 geany = "~/.config/geany"
 greetd = "~/.config/regreet"
-hypr = "~/.config/hypr"
 kitty = "~/.config/kitty"
 lite-xl = "~/.config/lite-xl"
 mako = "~/.config/mako"
@@ -40,6 +38,16 @@ wf = ""
 xdg = "~/.config/"
 
 [default.variables]
+
+
+[hypr]
+depends = ["alacritty", "bash", "zsh", "wofi", "lf", "waybar"]
+
+[hypr.files]
+hypr = "~/.config/hypr"
+
+[hypr.variables]
+background = ""
 
 
 [bash.files]
