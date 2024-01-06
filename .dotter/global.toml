@@ -41,7 +41,7 @@ xdg = "~/.config/"
 
 
 [hypr]
-depends = ["alacritty", "bash", "zsh", "wofi", "lf", "waybar"]
+depends = [ "alacritty", "bash", "zsh", "wofi", "lf", "waybar" ]
 
 [hypr.files]
 hypr = "~/.config/hypr"
@@ -49,13 +49,11 @@ hypr = "~/.config/hypr"
 [hypr.variables]
 background = ""
 
-
 [bash.files]
 "bash/bashrc" = "~/.bashrc"
 
 [zsh.files]
 "zsh/zshrc" = "~/.zshrc"
-
 
 [alacritty.files]
 alacritty = "~/.config/alacritty"
@@ -64,10 +62,8 @@ alacritty = "~/.config/alacritty"
 theme = "one_dark"
 term_font = "JetBrainsMono Nerd Font"
 
-
 [wofi.files]
 wofi = "~/.config/wofi"
-
 
 [lf.files]
 lf = { target = "~/.config/lf", type = "symbolic" }
