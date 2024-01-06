@@ -11,8 +11,7 @@ flameshot = "~/.config/flameshot"
 foot = "~/.config/foot"
 geany = "~/.config/geany"
 greetd = "~/.config/regreet"
-kitty = "~/.config/kitty"
-lite-xl = "~/.config/lite-xl"
+lite-xl = ""
 mako = "~/.config/mako"
 mpd = ""
 mpv = ""
@@ -41,7 +40,7 @@ xdg = "~/.config/"
 
 
 [hypr]
-depends = [ "alacritty", "bash", "zsh", "wofi", "lf", "waybar" ]
+depends = [ "alacritty", "kitty", "bash", "zsh", "wofi", "lf", "waybar" ]
 
 [hypr.files]
 hypr = "~/.config/hypr"
@@ -61,6 +60,12 @@ alacritty = "~/.config/alacritty"
 [alacritty.variables]
 theme = "one_dark"
 term_font = "JetBrainsMono Nerd Font"
+
+[kitty.files]
+kitty = "~/.config/kitty"
+
+[kitty.variables]
+kitty_theme = "OneDark"
 
 [wofi.files]
 wofi = "~/.config/wofi"
