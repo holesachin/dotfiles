@@ -1,0 +1,12 @@
+#!/bin/sh
+
+choose=$(printf "🔒 Lock\n  Logout\n⏻  Shutdown\n  Reboot\n💤 Suspend\n" | rofi -dmenu -p "Power Menu: " -theme ${HOME}/.config/rofi/power.rasi | cut -d' ' -f2- | tr -d ' ')
+
+case "${choose}" in
+    "Shutdown") systemctl poweroff          ;;
+      "Reboot") systemctl reboot            ;;
+        "Lock") betterlockscreen -l blur    ;;
+     "Suspend") systemctl suspend           ;;
+      "Logout") hyprctl exit || bspc quit   ;;
+             *) exit 1                      ;; 
+esac

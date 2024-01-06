@@ -1,0 +1,205 @@
+
+export PATH=$PATH:${HOME}/.local/scripts
+
+# eniviroment variables = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+export EDITOR='nvim'
+
+vim() {
+   [[ -f /usr/bin/nvim ]] && nvim ${@} || vim ${@}
+}
+
+# android studio
+# export ANDROID_HOME=$HOME/Android/Sdk
+# export PATH=$PATH:$ANDROID_HOME/emulator
+# export PATH=$PATH:$ANDROID_HOME/platform-tools
+# export PATH=$PATH:/opt/android-studio/bin 
+
+# aliases = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+# aliaces 
+alias fzf='fzf --border bold'
+alias rm='trash'
+# alias lf='lfub'
+alias bin='$HOME/.local/bin'
+
+alias cat='bat -p'
+
+#list
+alias ls='ls --color=auto'
+alias la='ls -a'
+alias ll='ls -alFh'
+alias l='ls'
+alias l.="ls -A | egrep '^\.'"
+alias listdir="ls -d */ > list"
+
+alias aria2cd='aria2c -c -s 11 -x 11 -k 1M -j 11 '
+
+# copy with rsync
+alias rcp='rsync -a --progress'
+
+# nb 
+nbvid() {
+    nb add " ${1}"
+}
+
+## Colorize the grep command output for ease of use (good for log files)##
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+# update grup
+alias grub-update='grub-mkconfig -o /boot/grub/grub.cfg'
+
+# rcm
+alias ld="lsrc | sed -e 's/:/ \x1b[1;31m :--> \x1b[0m/' | column -t -s ':'"
+
+alias fai="brave-browser --app=https://fontawesome.com/icons"
+
+# ssh into termux vivo
+ss() {
+    [[ "${1}" == "vivo"   ]] && ssh uO_a24O@100.99.126.191 -p 8022
+    [[ "${1}" == "ubuntu" ]] && ssh root@172.17.0.2 -p 8022
+}
+
+# open file 
+of(){
+    file=$(find ${HOME}/dots -type f | fzf --prompt "choose file to open: " --preview 'cat {}')   
+    [[ ${file} ]] && ${EDITOR} ${file}
+}
+
+# open application
+mn(){
+    echo $PATH | tr ':' ' ' | while read path; do 
+	$(ls -r $path | sort -u | fzf); 
+    done
+}
+
+# scan wifi 
+swifi() { 
+    nmcli device wifi rescan && nmcli device wifi list 
+}
+
+cwifi() {
+     if [ ${*} ] ; then
+        nmcli device wifi connect "${*}"
+    else
+        nmcli device wifi connect $(swifi | tail -n +2 |  gum choose | tr '*' ' ' | awk '{print $2}')
+    fi
+}
+
+# web serach 
+gg() {
+    brave-browser --app="https://www.google.com/search?q=${*}"
+}
+
+# short functions
+
+# Use the best version of pico installed
+edit ()
+{
+    if [ "$(type -t jpico)" = "file" ]; then
+        # Use JOE text editor http://joe-editor.sourceforge.net/
+        jpico -nonotice -linums -nobackups "$@"
+    elif [ "$(type -t nano)" = "file" ]; then
+        nano -c "$@"
+    elif [ "$(type -t pico)" = "file" ]; then
+        pico "$@"
+    else
+        vim "$@"
+    fi
+}
+sedit ()
+{
+    if [ "$(type -t jpico)" = "file" ]; then
+        # Use JOE text editor http://joe-editor.sourceforge.net/
+        sudo jpico -nonotice -linums -nobackups "$@"
+    elif [ "$(type -t nano)" = "file" ]; then
+        sudo nano -c "$@"
+    elif [ "$(type -t pico)" = "file" ]; then
+        sudo pico "$@"
+    else
+        sudo vim "$@"
+    fi
+}
+
+# Extracts any archive(s) (if unp isn't installed)
+extract () {
+    for archive in $*; do
+        if [ -f $archive ] ; then
+            case $archive in
+                *.tar.bz2)   tar xvjf $archive    ;;
+                *.tar.gz)    tar xvzf $archive    ;;
+                *.bz2)       bunzip2 $archive     ;;
+                *.rar)       rar x $archive       ;;
+                *.gz)        gunzip $archive      ;;
+                *.tar)       tar xvf $archive     ;;
+                *.tbz2)      tar xvjf $archive    ;;
+                *.tgz)       tar xvzf $archive    ;;
+                *.zip)       unzip $archive       ;;
+                *.Z)         uncompress $archive  ;;
+                *.7z)        7z x $archive        ;;
+                *)           echo "don't know how to extract '$archive'..." ;;
+            esac
+        else
+            echo "'$archive' is not a valid file!"
+        fi
+    done
+}
+
+
+# Copy and go to the directory
+cpg ()
+{
+    if [ -d "$2" ];then
+        cp $1 $2 && cd $2
+    else
+        cp $1 $2
+    fi
+}
+
+# Move and go to the directory
+mvg ()
+{
+    if [ -d "$2" ];then
+        mv $1 $2 && cd $2
+    else
+        mv $1 $2
+    fi
+}
+
+# Create and go to the directory
+mkdirg ()
+{
+    mkdir -p $1
+    cd $1
+}
+
+# Goes up a specified number of directories  (i.e. up 4)
+up ()
+{
+    local d=""
+    limit=$1
+    for ((i=1 ; i <= limit ; i++))
+        do
+            d=$d/..
+        done
+    d=$(echo $d | sed 's/^\///')
+    if [ -z "$d" ]; then
+        d=..
+    fi
+    cd $d
+}
+
+# auto-cpufreq auto completion
+# if [[ "$SHELL" =~ "zsh" ]]; then
+#     eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-cpufreq)"
+# elif [[ "$SHELL" =~ "bash" ]]; then
+#     eval "$(_AUTO_CPUFREQ_COMPLETE=bash_source auto-cpufreq)"
+# else 
+#     eval "$(_AUTO_CPUFREQ_COMPLETE=fish_source auto-cpufreq)"
+# fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+

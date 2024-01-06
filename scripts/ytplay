@@ -1,0 +1,56 @@
+#!/bin/bash
+
+# mpc mpd yt-dlp 
+
+music_dir="${HOME}/music"
+audioFile="${HOME}/.cache/audio.wav" # in wav formate
+voiceText="${HOME}/.cache/voiceText"
+
+VOSK_VOICE_MODEL="~/download/vosk-models/vosk-model-en-in-0.5"
+
+# base urls 
+#yturl="https://www.youtube.com"
+yturl="https://vid.puffyan.us"
+
+userAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" 
+
+# get voice input
+if [[ -z ${*} ]]; then 
+   notify-send "Ytplay" "Listening.." 
+   ffmpeg -y -f alsa -i default -acodec pcm_s16le -ac 1 -ar 44100 -t 4 -f wav ${audioFile} && vosk-transcriber -m ~/download/vosk-models/vosk-model-en-in-0.5 -i ${audioFile} -o ${voiceText}
+   query="$(cat ${voiceText} | tr ' ' '+')"
+fi
+
+[[ "${*}" ]] && query=$(echo ${*} | tr ' ' '+')
+#[[ "${*}" ]] || read -p " search: " query 
+[[ "${query}" ]] || exit 1
+
+
+# notification 
+notify-send "Ytmusic" "searching: ${query}"
+
+# search in local dir 
+#localMusic=$(find ${music_dir} -type f | fzf --filter "$(echo ${query} | tr '+' ' ')" | head -n 1)
+localMusic=$(mpc search title "$(echo ${query} | tr '+' ' ')" | head -n 1)
+
+# play from local library
+if [[ ${localMusic} ]]; then
+  echo "music path: $localMusic" 
+  espeak "playing: $(basename ${localMusic} | cut -d'.' -f -1)" & sleep 2
+  mpc stop && mpc clear && mpc add ${localMusic} && mpc play  
+  notify-send "Ytmusic" "playing: $(basename ${localMusic} | cut -d'.' -f -2)"
+  exit 
+fi 
+
+url=$(curl -A ${userAgent} -s ${yturl}/search?q=${query} | grep -Eo "/watch\?v=.{11}" | head -n 1)
+
+# get audio link 
+audioUrl=$(yt-dlp -f bestaudio --get-url ${yturl}${url})
+
+# get title 
+title=$(yt-dlp --get-title "${yturl}${url}")
+
+# play song 
+mpc stop && mpc clear 
+mpc add ${audioUrl} && mpc play && notify-send "Ytmusic" "playing: ${title}" 
+

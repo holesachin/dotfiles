@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+[[ -d ~/.cache/aurhelper ]] || mkdir -p ~/.cache/aurhelper
+
+for PKG in $@; do
+	cd ~/.cache/aurhelper
+	#[[ 404 -eq $(curl -o -s -w  "%{http_code}" https://aur.archlinux.org/packages/$PKG) ]] && \
+	#echo " Error: package not found" && continue
+	[ -f /usr/bin/$PKG ] && continue
+	git clone https://aur.archlinux.org/$PKG
+	cd $PKG
+	makepkg -si --check
+done

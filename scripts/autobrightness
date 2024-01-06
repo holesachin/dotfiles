@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+# set minimum brightness value
+# brightnessctl --min-value 7%
+
+_battery_status=$(</sys/class/power_supply/BAT1/status)
+
+# set bright when on 'ac_power'
+if [[ ${_battery_status} == "Charging" || ${_battery_status} == "Full" ]]; then
+	brightnessctl --quiet set 51% && notify-send "Autobrightness" "Brightness 51%"
+	exit
+fi
+
+# get current 'brightness' & 'batter_capacity'
+_brightness=$(echo "$(brightnessctl g) / $(brightnessctl m)  * 100" | bc --mathlib | cut -d'.' -f1)
+_battery_capacity=$(</sys/class/power_supply/BAT1/capacity)
+
+# set brightness as per battery_capacity
+if [[ ${_battery_capacity} > 50 ]]; then
+	[[ ${_brightness} != 31 ]] && brightnessctl set 31%
+elif [[ ${_battery_capacity} < 50 ]]; then
+	[[ ${_brightness} != 21 ]] && brightnessctl set 21%
+elif [[ ${_battery_capacity} < 20 ]]; then
+	[[ ${_brightness} != 21 ]] && brightnessctl set 21%
+else
+	[[ ${_brightness} != 11 ]] && brightnessctl set 11%
+fi
+
+# print brightness and batter_capacity
+echo "BRIGHTNESS: ${_brightness} BATTERY: ${_battery_capacity}"

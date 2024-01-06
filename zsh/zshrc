@@ -1,0 +1,47 @@
+# zap   : https://github.com/zap-zsh/zap
+# site  : https://zapzsh.org
+# yt    : https://youtu.be/LhDMw6n3GI4?si=Jl0aOM3faxEHkE5p
+
+# start tmux
+# if [[ -z "$TMUX" ]]; then
+#     tmux -u attach -t TMUX || tmux -u new -s TMUX
+# fi 
+
+# load zap installer
+if [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ]; then  
+    source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+fi
+
+# load aliases
+[ -f "${HOME}/.config/shell/aliases" ] && source "${HOME}/.config/shell/aliases"
+
+# zap alias
+alias zapw='echo https://zapzsh.org'
+alias zapsrc='echo https://github.com/zap-zsh/zap'
+alias zaprc="vim ${HOME}/.zshrc"
+alias zshrc="vim ${HOME}/.zshrc"
+
+# plugins
+plug "zap-zsh/supercharge"
+plug "zap-zsh/zap-prompt"
+plug "zap-zsh/sudo"
+plug "zsh-users/zsh-autosuggestions"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "MichaelAquilina/zsh-you-should-use"
+
+# load and initialise completion system
+autoload -Uz compinit
+compinit
+
+# key bindigs
+bindkey "^F" "lf"
+
+PS1+=" "
+
+alias fireapp='firefox -kiosk -new-window'
+
+# set zsh key
+bindkey -v
+
+# kali vm
+alias kali='ssh sachin@192.168.122.148'

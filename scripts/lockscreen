@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+LOCK_IN_SECONDS=1260
+SLEEP_IN_SECONDS=660
+
+if [[ ${1} == "--now" ]]; then 
+    playerctl pause ; swaylock -f 
+else # only works with 'wayland:hyprland'
+    swayidle -w timeout ${LOCK_IN_SECONDS} 'swaylock -f' timeout ${SLEEP_IN_SECONDS} 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on'
+fi 

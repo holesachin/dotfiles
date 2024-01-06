@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+export XAUTHORITY=/home/sachin/.Xauthority
+export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+
+# Check if the computer is running on AC power or on battery
+if [[ $(cat /sys/class/power_supply/ACAD/online) -eq 1 ]]; then
+	# If AC power is detected, increase the screen brightness
+	xbacklight -set 99 2>NULL || brightnessctl -q s 70%
+	su -c '/home/sachin/.local/scripts/chargingstate 1' sachin
+else
+	# If running on battery, decrease the screen brightness
+	xbacklight -set 21 2>NULL || brightnessctl -q s 21%
+	su -c '/home/sachin/.local/scripts/chargingstate 0' sachin
+fi

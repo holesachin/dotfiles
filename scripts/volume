@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+notify_id_file=/tmp/notify_id
+mute=${HOME}/.cache/mute
+
+vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d' ' -f2 )
+
+# action
+case "${1}" in
+    "inc") # increase volume
+        [[ ${vol} < 99 ]] && wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+
+        vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d' ' -f2 )
+    ;;
+    "dec") # decrease volume
+        [[ ${vol} > 0 ]] && wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-
+        vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d' ' -f2 )
+    ;;
+    "mute"|"unmute") # mute/unmute volume
+        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+        if [[ -f ${mute} ]]; then 
+            /bin/rm ${mute}
+            vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d' ' -f2 )
+        else 
+            touch ${mute}
+            vol=0
+        fi
+    ;;
+esac
+
+notify_id=$( cat ${notify_id_file} )
+[[ -z ${notify_id} ]] && notify_id=0
+
+volume=$(echo "${vol} * 100" | bc)
+
+# choose icon
+if [[ "${volume}" > 70 ]]; then
+    icon="audio-volume-high"
+elif [[ "${volume}" > 30 ]]; then
+    icon="audio-volume-medium"
+elif [[ "${volume}" > 0 ]]; then
+    icon="audio-volume-low"
+else
+    icon="audio-volume-muted"
+fi
+
+# notify
+notify-send -pr ${notify_id} --expire-time=500 -i "${icon}" "${volume}%" -h int:value:${volume} -h string:synchronous:volume > ${notify_id_file}

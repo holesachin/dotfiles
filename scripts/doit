@@ -1,0 +1,42 @@
+#!/bin/bash 
+
+# = = =
+DOITFILE=${HOME}/.doit 
+TASKFILE="${HOME}"/.cache/doit.task
+# = = = 
+
+# = select task = = =
+# = show in polybar 
+selectTask() {
+    cat "${TASKFILE}" ; exit 
+}
+
+# = update task 
+update() {
+    polybar-msg hook msg 1
+}
+
+# = add new task = = =
+addNewTask() {
+    newItem=$(rofi -dmenu -theme doitInput.rasi -p "󰴓")
+    [[ -z ${newItem} ]] || echo ${newItem} >> ${DOITFILE}
+    exit
+}
+
+[[ "$1" == "task"    ]] && selectTask
+[[ "$1" == "newtask" ]] && addNewTask
+
+# = remove empty line from .doit file 
+sed -i '/^$/d' ${DOITFILE}
+
+# get todo list = = =
+item=$(cat ${DOITFILE} | rofi -dmenu -theme todo.rasi) 2> /dev/null
+
+# = formate = = =
+# [[ -z ${item} ]] ||  echo "${item}%{F-}" > "${TASKFILE}" 
+[[ -z ${item} ]] ||  echo "${item}" > "${TASKFILE}" 
+
+# = update daemon = = =
+# [[ -f /tmp/doitmp ]] || while inotifywait -e modify "${TASKFILE}" ; do update; done & 
+# [[ -f /tmp/doitmp ]] || touch /tmp/doitmp
+

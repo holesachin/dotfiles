@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+[[ -f /usr/bin/calibre ]] || echo "'calibre' is not install."
+
+ebook-convert ${1} ${2} --enable-heuristics

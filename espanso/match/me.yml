@@ -1,0 +1,7 @@
+# info
+
+matches: 
+
+  # emails
+  - trigger: ":email 1"
+    replace: "holesachin007@gmail.com"

@@ -1,0 +1,18 @@
+#!/bin/sh
+
+# check dpendency 
+[ -f "/usr/bin/marked" ] || sudo pacman -Syy --noconfirm marked 
+[ -f "/usr/bin/wkhtmltopdf" ] || pikaur -Syy --noconfirm wkhtmltopdf-static
+
+# get file 
+if [ "${1}" ]; then 
+   mdfiles="${1}"
+else 
+   mdfiles=$(find "$HOME"/* -type f | grep ".*.md$" | fzf -m --prompt "chose markdown file: ")
+fi
+
+for MFILE in ${mdfiles}; do 
+   marked "${MFILE}" -o /tmp/mark.html
+   wkhtmltopdf /tmp/mark.html  "$(basename "${MFILE}" | sed 's/.md/.pdf/g')"
+done
+

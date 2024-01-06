@@ -1,0 +1,75 @@
+#!/bin/bash
+
+fdb_log=${HOME}/.cache/fdb
+[[ -d ${fdb_log} ]] || mkdir -p ${fdb_log}
+
+# boots recovery image to android device
+function Recovery(){
+    rec="${HOME}/andro/redmiNote10(mojito)"
+      # select recovery image
+  	recovery_img=$(ls ${rec}|fzf --prompt " select Recovery: " )
+      # reboot to fastboot mode 
+  	[[ -z ${recovery_img} ]] && echo " > Please select Recovery img..." && exit || adb reboot bootloader
+      # boot recovery
+  	sleep 7; fastboot boot ${rec}/${recovery_img}
+}
+
+# remove system Application from android device
+function Remove_system_apk(){
+      # get apk package name
+	apk="$(adb shell pm list packages|cut -d\: -f2|fzf -m --prompt "select Aplication: ")"
+           # remove applicatiton	
+      for APK in ${apk[@]}; do # confirm	
+        remove=$(echo -e "No\nYes"|fzf --prompt " Do you want To Remove '${APK}' ")
+	    [[ "Yes" == ${remove} ]] && adb shell pm uninstall --user 0 ${APK} && echo " ${APK} $(date)" >> ${fdb_log}/uninstall.log
+      done
+}
+
+# reinstall system application
+function Reinstall_Application(){
+	APK=$(adb shell pm list packages -u|cut -d\: -f2|fzf)
+	[[ -z ${APK} ]] && exit 0
+	adb shell cmd package install-existing ${APK} && echo " > ${APK} $(date)" >> ${fdb_log}/reinstall.log
+}
+
+# install applicaton in android device
+function Install_Application(){
+	APK=$(find $HOME -type f|grep ".apk$"|fzf -m --prompt " install Application: ")
+	G=$(echo -e "No\nGive all permissions"|fzf --prompt " Application Permissions: ")
+	[[ ${G} == "No" ]] || G=-g && G=""
+	for IN in ${APK}; do
+		adb install ${G} ${IN} && echo " ${APK}  $(date) " >> ${fdb_log}/install.log
+	done	
+}
+
+# restore application data 
+function Restore_Application_Data() {
+   for ABKP in $(ls $(yad --file --directory) | grep ".*.backup" | fzf -m)
+   do 
+      adb restore "${ABKP}"
+   done
+}
+
+# user installed apps list
+function Backup_Applications(){
+   for APP in $(adb shell pm list packages -3 -f | fzf -m ) 
+   do
+      adb pull $( echo ${APP} | sed "s/^package://" |sed "s/base.apk=/base.apk /").apk
+   done
+}
+
+# backup applicaton data
+function Backup_Applications_Data(){
+   for APP in $(adb shell pm list packages -3 | fzf -m)
+   do
+      APP=$( echo ${APP} | sed "s/^package://")
+      adb backup -f ${APP}.backup ${APP}
+   done
+}
+
+function main(){
+	cmd=$(grep "^function" ${0}|grep -v "^function main"|awk '{print $2}'|cut -d\( -f1|fzf)
+	${cmd} ; exit 0
+}
+main
+

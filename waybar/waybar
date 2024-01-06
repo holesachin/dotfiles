@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+WAYBAR_THEME="default"
+
+WAYBAR_CONFIG="${HOME}/.config/waybar/${WAYBAR_THEME}/config"
+WAYBAR_STYLE="${HOME}/.config/waybar/${WAYBAR_THEME}/style.css"
+
+if pgrep waybar; then
+	killall waybar
+fi
+
+waybar --config ${WAYBAR_CONFIG} --style ${WAYBAR_STYLE} &

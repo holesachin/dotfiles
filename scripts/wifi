@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+if [ ${*} ]; then
+	nmcli device wifi connect "${*}"
+else
+	nmcli device wifi connect $(nmcli device wifi rescan && nmcli device wifi list | tail -n +2 | gum choose | tr '*' ' ' | awk '{print $2}')
+fi

@@ -1,0 +1,14 @@
+#!/bin/sh 
+
+# create vertual devive without name 
+# sudo modprobe v4l2loopback exclusive_caps=1
+
+# list devices 
+v4l2-ctl  --list-devices
+
+# create virtual camera device with name 
+sudo modprobe v4l2loopback exclusive_caps=1 video_nr=4 card_label="HD CAMPV"
+
+# list devices
+v4l2-ctl  --list-devices
+

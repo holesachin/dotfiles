@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+# notify-send wrapper
+_notify() {
+	notify-send -r 1231 "Blt Script" ${@}
+}
+
+# check rfkill
+blocked=$(rfkill -r | grep "bluetooth")
+if [[ $(echo ${blocked} | cut -d' ' -f4) == "blocked" ]]; then
+	rfkill unblock $(echo ${blocked} | cut -d' ' -f1)
+fi
+
+# menu
+if [[ -t 1 ]]; then
+	[[ -z ${@} ]] && _menu="gum choose" || _menu="${@}"
+	#[[ -z ${@} ]] && _menu="fzf" || _menu="${@}"
+else
+	_menu="rofi -dmenu -p Bluetooth: "
+fi
+
+# is 'bluetooth' powered
+is_powered=$(bluetoothctl show | grep Powered | cut -d' ' -f2 2>/dev/null)
+
+# power on if-not
+if [[ ${is_powered} != "yes" ]]; then
+	command bluetoothctl power on
+fi
+
+# scan bluetooth devices
+_scan() {
+	_notify "Scanning..." && bluetoothctl -t 7 scan on >/dev/null
+}
+
+# choose devise to connect
+_choose() {
+	choise=$(bluetoothctl devices | sed 's/^Device//g' | sed '1s/^/Scan Bluetooth!\n/g' | ${_menu} | cut -d' ' -f2)
+}
+
+# conect to bluetooth
+_connect() {
+	[[ -z ${choise} ]] && exit || bluetoothctl connect ${choise}
+}
+
+_choose # choose bluetooth device
+
+if [[ ${choise} =~ "Bluetooth!" ]]; then
+	_scan && _choose && _connect && _notify "Conected"
+else
+	_connect && _notify "Conected"
+fi

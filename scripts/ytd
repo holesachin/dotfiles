@@ -1,0 +1,56 @@
+#!/bin/bash 
+
+# yt-dlp, ffmpeg, area2
+
+# Check if yt-dlp is installed
+if ! command -v yt-dlp &> /dev/null; then
+    echo "yt-dlp is not installed. Please install it to use this script."
+    exit 1
+fi
+
+# Check if ffmpeg is installed
+if ! command -v ffmpeg &> /dev/null; then
+    echo "ffmpeg is not installed. Please install it to use this script."
+    exit 1
+fi
+
+# Check if aria2 is installed
+if ! command -v aria2c &> /dev/null; then
+    echo "aria2c is not installed. Please install it to use this script."
+    exit 1
+fi
+
+# default configs 
+VIDEO="bestvideo" # 137:mp4 248:webm
+AUDIO="bestaudio" # 140:m4a 251:webm
+OUTPUT_DIR="."
+START_TIME=""
+END_TIME=""
+
+while [[ ${#} -gt 0 ]]; do
+   case "${1}" in
+        -a)  VIDEO=""  ; shift ;; 
+        -k)  KEEP="-k" ; shift ;;
+        -o)  OUTPUT_DIR="${2}" ; shift 2 ;;
+       -ss)  START_TIME="-ss ${2}" ; shift 2 ;;
+       -to)  END_TIME="-to ${2}" ; shift 2 ;;
+         *)  [[ "${1}" =~ ^(http|https):// ]] && YTURL="${1}"; shift || break ;;
+      esac
+done
+
+# get url from clipboard
+if [[ -z "${YTURL}" ]]; then 
+   [[ $(xclip -sel c -o) =~ ^(http|https):// ]] && YTURL=$(xclip -sel c -o) 
+fi 
+
+# check url is empty
+if [[ -z "${YTURL}" ]]; then 
+     echo "Usage: $0 [-a] [-o output_directory] YouTube_URL"
+     exit 1
+fi
+
+echo "video:$VIDEO audio:$AUDIO youtube_url:$YTURL output_dir:$OUTPUT_DIR"
+
+# download video and audio 
+yt-dlp --external-downloader aria2c --external-downloader-args '-c -j 3 -x 3 -s 3 -k 1M' ${KEEP} -f ${VIDEO}+${AUDIO} --postprocessor-args "${START_TIME} ${END_TIME}" -o "${OUTPUT_DIR}/%(title)s.%(ext)s" ${YTURL}
+

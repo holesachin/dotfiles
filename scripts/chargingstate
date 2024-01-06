@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+export XAUTHORITY=/home/sachin/.Xauthority
+export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+
+# Pass 1 as an argument for charging, 0 for discharging
+BATTERY_LEVEL=$(/usr/bin/cat /sys/class/power_supply/BAT1/capacity)
+BATTERY_STATUS=$(/usr/bin/cat /sys/class/power_supply/BAT1/status)
+
+[[ ${BATTERY_LEVEL} < 21 ]] && BATTERY_ICON="battery-low -u critical" || BATTERY_ICON=battery-good
+[[ ${BATTERY_LEVEL} > 90 ]] && BATTERY_ICON=battery-full
+
+[[ ${BATTERY_STATUS} == "Charging" ]] && BATTERY_ICON="ac-adapter"
+
+[[ -f /tmp/notify_id ]] || echo 7000 >/tmp/notify_id
+
+# Send notifications
+/usr/bin/notify-send "${BATTERY_STATUS}" "${BATTERY_LEVEL}% Battery" -i ${BATTERY_ICON} -t 7000 -r $(</tmp/notify_id) -p >/tmp/notify_id

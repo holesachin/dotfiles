@@ -1,0 +1,32 @@
+#!/bin/bash
+
+WEBSITE_LIST="${HOME}/.config/weblist.*"
+MENU="rofi -i -dmenu"
+
+
+addNewApp() {
+   if [[ ${2} =~ ^(http|https):// ]]; then
+      echo "${1}     ${2}" >> ${WEBSITE_LIST}
+   fi
+   exit
+}
+[[ ${1} ]] && addNewApp ${1} ${2}
+
+NAMES=$(sed -e 's/ *#.*//g' -e '/^\s*$/d' ${WEBSITE_LIST} | awk '{print $1}')
+
+echo $NAMES
+
+SELECTED=$(echo ${NAMES} | tr ' ' '\n' | ${MENU})
+
+echo $SELECTED
+
+URL=$(grep "${SELECTED}" ${WEBSITE_LIST} | awk '{print $2}')
+
+echo $URL
+
+if [[ ${URL}  =~ ^(http|https):// ]]; then 
+   brave-browser --app="${URL}" &
+else 
+   exit
+fi
+

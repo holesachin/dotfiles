@@ -1,0 +1,14 @@
+includes = []
+packages = [
+  "default",
+  "alacritty",
+  "wofi",
+  "lf",
+  "zsh",
+  "bash",
+  "waybar"
+]
+
+[files]
+
+[variables]

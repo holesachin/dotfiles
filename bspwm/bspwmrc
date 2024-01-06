@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+# autostart = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+pgrep -x sxhkd >/dev/null || sxhkd -c "$HOME"/.config/sxhkd/sxhkdrc "$HOME"/.config/bspwm/keymaps &
+pgrep bspswallow || bspswallow &
+pgrep gitpush || $HOME/.local/scripts/gitpush &
+pgrep kdeconnect-indicator || kdeconnect-indicator &
+pgrep lxpolkit || lxpolkit &
+pgrep Discord || $(sleep 21 && discord --start-minimized) &
+pgrep dunst || dunst &
+
+pkill -9 xfce4-panel nm-applet blueman-applet 
+xfce4-panel &
+nm-applet &
+blueman-applet &
+
+#
+# monitor configuration = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+# assign workspaces 
+if [[ $(xrandr | grep "HDMI-1 connected") ]]; then
+    xrandr --output eDP-1 --primary --mode 1920x1080 --rotate normal --output HDMI-1 --mode 1920x1080 --rotate normal --left-of eDP-1
+    bspc wm -O HDMI1 eDP-1
+    bspc monitor HDMI-1 -d 1 2 3 
+    bspc monitor eDP-1 -d  4 5 6 7 8 9
+    feh --no-fehbg --bg-scale "${HOME}"/.config/bg.png "${HOME}"/.config/bg2.png &
+else 
+    bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9
+    feh --no-fehbg --bg-scale ${HOME}/.config/bg.png
+fi
+
+monitor = ${env:MONITOR:eDP-1}
+#polybar -r &
+# bspwm configuration = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+bspc config border_width 0 
+bspc config window_gap 5
+bspc config split_ratio 0.40
+bspc config borderless_monocle true
+bspc config gapless_monocle true
+bspc config paddingless_monocle true
+bspc config single_monocle false
+bspc config focus_follows_pointer true
+
+# bspwm colors = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+bspc config focused_border_color   "#816ab7" #"#806D60"  #"$YELLOW" 
+bspc config normal_border_color    "#424450" #$BACKGROUND"
+bspc config active_border_color     "$MAGENTA"
+bspc config presel_feedback_color   "$GREEN"
+
+# window rules = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
+bspc rule -a firefox desktop='^2' follow=on focus=on
+bspc rule -a Portmaster state=floating manage=on focus=on
+bspc rule -a stalonetray state=floating manage=off
+bspc rule -a Conky state=floating manage=off
+bspc rule -a Indicator-stickynotes state=floating manage=off
+bspc rule -a zoom state=floating manage=on
+bspc rule -a sonata state=floating manage=on
+bspc rule -a sxiv state=floating manage=on
+bspc rule -a floatAlacritty state=floating rectangle=600x300+1300+760
+bspc rule -a scpad sticky=on state=floating rectangle=1916x400+0+0
+bspc rule -a Gcolor3 state=floating sticky=on  manage=on
+bspc rule -a scrcpy state=floating sticky=on  manage=on
+bspc rule -a Yad state=floating sticky=on  manage=on border=off 
+bspc rule -a Ulauncher state=floating border=off
+
+notify-send "bspwm" "bspwm config realoaded succesfully!"
+# end configuration = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =

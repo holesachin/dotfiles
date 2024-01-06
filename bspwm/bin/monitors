@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ $(xrandr | grep "HDMI-1 connected") ]]; then
+    xrandr --output eDP-1 --primary --mode 1920x1080 --rotate normal --output HDMI-1 --mode 1920x1080 --rotate
+    bspc wm -O HDMI1 eDP-1
+    bspc monitor HDMI-1 -d 1 2 3
+    bspc monitor eDP-1 -d  4 5 6 7 8 9
+    feh --no-fehbg --bg-scale "${HOME}"/.config/bg.png "${HOME}"/.config/bg2.png &
+else
+    bspc monitor eDP-1 -d 1 2 3 4 5 6 7 8 9
+    feh --no-fehbg --bg-scale ${HOME}/.config/bg.png
+fi

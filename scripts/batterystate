@@ -1,0 +1,18 @@
+#!/bin/sh
+
+export XAUTHORITY=/home/sachin/.Xauthority
+export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+
+# Battery percentage at which to notify
+WARNING_LEVEL=21
+BATTERY_DISCHARGING=$(/usr/bin/cat /sys/class/power_supply/BAT1/status)
+BATTERY_LEVEL=$(/usr/bin/cat /sys/class/power_supply/BAT1/capacity)
+
+# If the battery is charging and is full
+if [[ $BATTERY_LEVEL -gt 97 ]] && [[ $BATTERY_DISCHARGING == "Discharging" ]]; then
+	su -c '/usr/bin/notify-send "Battery Charged" "Battery is fully charged." -icon battery-full -r 9991' sachin
+# If the battery is low and is not charging
+elif [[ $BATTERY_LEVEL -le $WARNING_LEVEL ]] && [[ $BATTERY_DISCHARGING -eq 1 ]]; then
+	su -c '/usr/bin/notify-send "Low Battery" "${BATTERY_LEVEL}% of battery remaining." -icon battery-low -u critical -r 9991' sachin
+fi

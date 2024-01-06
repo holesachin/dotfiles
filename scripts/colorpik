@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+color=$(hyprpicker)
+
+# copy to clipboard
+wl-copy ${color}
+
+notify-send "Hyprpicker" "${color}"

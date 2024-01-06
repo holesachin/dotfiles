@@ -1,0 +1,17 @@
+#!/bin/sh
+# cheats for all 
+
+[ $1 = "-h" ] || [ -z ${1} ] && echo "
+ usage:     cheatsh < command >
+ example:   cheatsh ls
+ help:	    cheatsh :help
+" && exit
+
+# confirm 'curl' is installed
+[ ! -f /usr/bin/curl ] && echo " [O] Warning!: ⚠ Make sure 'curl' is installed" && exit 
+
+# get cheat for give argument
+curl -s cheat.sh/${1} || echo " [X] Error!: 😢 No Internet"
+
+exit 0
+

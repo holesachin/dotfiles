@@ -1,0 +1,63 @@
+sw_volume: 100
+audio_device_state:1:PipeWire Sound Server
+audio_device_state:1:my_fifo
+state: play
+current: 47
+time: 79.807000
+random: 0
+repeat: 0
+single: 0
+consume: 1
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:Origins__Deluxe_Edition___Imagine_Dragons_Album_/Boomerang.mp3
+1:Origins__Deluxe_Edition___Imagine_Dragons_Album_/Bullet_In_A_Gun.mp3
+2:Origins__Deluxe_Edition___Imagine_Dragons_Album_/Burn_Out.mp3
+3:Origins__Deluxe_Edition___Imagine_Dragons_Album_/Cool_Out.mp3
+4:Origins__Deluxe_Edition___Imagine_Dragons_Album_/Digital.mp3
+5:Origins__Deluxe_Edition___Imagine_Dragons_Album_/Kygo___Imagine_Dragons_-_Born_to_be_Yours__Lyric_Lyrics_Video_.mp3
+6:Origins__Deluxe_Edition___Imagine_Dragons_Album_/Love.mp3
+7:Origins__Deluxe_Edition___Imagine_Dragons_Album_/Machine.mp3
+8:Origins__Deluxe_Edition___Imagine_Dragons_Album_/Natural.mp3
+9:Origins__Deluxe_Edition___Imagine_Dragons_Album_/Only.mp3
+10:Origins__Deluxe_Edition___Imagine_Dragons_Album_/Real_Life.mp3
+11:Origins__Deluxe_Edition___Imagine_Dragons_Album_/Stuck.mp3
+12:Origins__Deluxe_Edition___Imagine_Dragons_Album_/West_Coast.mp3
+13:Origins__Deluxe_Edition___Imagine_Dragons_Album_/Zero__From_the_Original_Motion_Picture__Ralph_Breaks_The_Internet__.mp3
+14:valentine/Zaroorat_Full_Video_Song___Ek_Villain___Mithoon___Mustafa_Zahid.mp3
+15:Remix_Hits/Ain_t_My_Fault_-_R3hab_Remix.mp3
+16:Remix_Hits/All_of_Me_-_Ti_sto_s_Birthday_Treatment_Remix_-_Radio_Edit.mp3
+17:Remix_Hits/Beautiful_People__feat__Khalid__-_NOTD_Remix.mp3
+18:Remix_Hits/Call_on_Me_-_Ryan_Riback_Remix.mp3
+19:Remix_Hits/Delicate_-_Seeb_Remix.mp3
+20:Remix_Hits/Wet_-_Remix.mp3
+21:Remix_Hits/Don_t_Call_Me_Up_-_R3HAB_Remix.mp3
+22:Remix_Hits/Easier_-_Seeb_Remix.mp3
+23:Remix_Hits/I_Know_You__feat__Bastille__-_Vigiland_Remix.mp3
+24:Remix_Hits/Insomnia_-_King_Topher_Remix.mp3
+25:Remix_Hits/Levitating__feat__DaBaby__-_Don_Diablo_Remix.mp3
+26:Remix_Hits/Love_Myself_-_KREAM_Remix.mp3
+27:Remix_Hits/Mad_Love_-_Blinkie_Remix.mp3
+28:Remix_Hits/Mama_-_Syn_Cole_Remix.mp3
+29:Remix_Hits/Memories__feat__Kid_Cudi__-_2021_Remix.mp3
+30:Remix_Hits/Monster_-_Robin_Schulz_Remix.mp3
+31:Remix_Hits/More_-_RedOne_Jimmy_Joker_Remix.mp3
+32:Remix_Hits/Old_Town_Road_-_Diplo_Remix.mp3
+33:Remix_Hits/On_My_Way_-_Da_Tweekaz_Remix.mp3
+34:Remix_Hits/Club_Can_t_Handle_Me__feat__David_Guetta_.mp3
+35:Remix_Hits/Only_Want_You_-_Sam_Feldt_Remix.mp3
+36:Remix_Hits/Piece_Of_Your_Heart_-_Alok_Remix.mp3
+37:Remix_Hits/Post_Malone__feat__RANI__-_VIZE_Remix.mp3
+38:Remix_Hits/S_M_Remix.mp3
+39:Remix_Hits/Someone_You_Loved_-_Future_Humans_Remix.mp3
+40:Remix_Hits/Something_Just_Like_This_-_Alesso_Remix.mp3
+41:Remix_Hits/South_of_the_Border__feat__Camila_Cabello___Cardi_B__-_Cheat_Codes_Remix.mp3
+42:Remix_Hits/Summertime_Sadness__Lana_Del_Rey_Vs__Cedric_Gervais__-_Cedric_Gervais_Remix.mp3
+43:Remix_Hits/Sweat_-_Remix.mp3
+44:Remix_Hits/Sweet_but_Psycho_-_Morgan_Page_Dance_Remix.mp3
+45:Remix_Hits/Move_Your_Body_-_Alan_Walker_Remix.mp3
+46:Remix_Hits/Titanium__feat__Sia__-_David_Guetta___MORTEN_Future_Rave_Remix.mp3
+47:Remix_Hits/I_Follow_Rivers_-_The_Magician_Remix.mp3
+playlist_end

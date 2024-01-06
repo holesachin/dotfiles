@@ -1,0 +1,39 @@
+#!/bin/bash
+
+setbg() { 
+    if [ "${1}" == "xbg" ]; then 
+        cp -f "$2" "$HOME"/.config/bg.png 
+    elif [ "${1}" == "waybg" ]; then
+        cp -f "$2" "$HOME"/.config/bg2.png 
+    fi
+   pgrep Hyprland && hyprctl reload || feh --no-fehbg --bg-scale "$HOME"/.config/bg.png "$HOME"/.config/bg2.png  
+}
+
+help() {
+    notify-send "sxiv keys :" " <ctrl-x> + key
+w - set wallpaper with pywal
+b - set wallpaper on primary monitor
+m - set wallpaper on external monitor
+l - set lockscreen wallpaper
+d - delete file 
+c - copy to clipboard
+g - open in gimp
+v - play video
+h - help " -i "*"
+}
+
+while read file; do
+	case "$1" in
+		"w") wal -i "$file" && setbg xbg "$file"		        ;; # set with pywal wallpaper
+        "b") setbg xbg "$file"                                                  ;; # set wallpaper ( primary monitor )
+        "m") setbg waybg "$file"                                                ;; # set wallpaper ( external monitor )
+        "l") betterlockscreen -u "$file" 	                                    ;; # set lockscreen wallpaper
+		"d") trash -f "$file" 			                                        ;; # delete file
+		"c") echo "$file" | xclip -sel c	                                    ;; # copy image path
+        "g") gimp "$file" & pkill sxiv                                          ;; # open in image editor (gimp)
+        "v") echo "$file" && pkill sxiv                                              ;; # print file name to stdout
+	"d") trash-cli "$file" 							;; # delete file
+        "h") help                                                               ;; # help 
+	esac
+done
+

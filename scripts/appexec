@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# backend
+#export BEMENU_BACKEND='wayland'
+
+# set default theme
+export BEMENU_OPTS='-p "Exec:" --hp 7 --line-height 32 --ch 16 '
+
+# fonts
+export BEMENU_OPTS+="--fn 'Jetbrains Mono semibold 9' "
+
+# colors
+export BEMENU_OPTS+="--tb '#6272a4'\
+ --tf '#f8f8f2'\
+ --fb '#0C0C0C'\
+ --ff '#f8f8f2'\
+ --nb '#0C0C0C'\
+ --hb '#44475a'\
+ --hf '#50fa7b'\
+ --sb '#44475a'\
+ --sf '#50fa7b'\
+ --ab '#0C0C0C'
+"
+
+# exec menu
+bemenu-run &

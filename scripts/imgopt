@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+#!/bin/bash
+# Dependancies
+# - img-optimize - https://virtubox.github.io/img-optimize/
+# - imagemagick
+# - jpegoptim
+# - optipng
+# - yad
+
+# installation = = = 
+# pikaur -Sf jpegoptim optipng imagemagick webp yad
+# git clone https://github.com/VirtuBox/img-optimize.git $HOME/.img-optimize
+# sudo ln -sf $HOME/.img-optimize/optimize.sh /usr/local/bin/img-optimize
+# sudo chmod +x /usr/local/bin/img-optimize
+
+FOLDER=$(yad --file --directory)
+BACKUP_FOLDER="${FOLDER}/original"
+
+# max width
+WIDTH=800
+
+# max height
+HEIGHT=600
+
+# back up images
+mkdir "${BACKUP_FOLDER}"
+cp -rf "$(find "${FOLDER}" -iname "*.png" -o  -iname "*.jpg")"  "${BACKUP_FOLDER}" || exit 1 
+
+#resize png or jpg to either height or width, keeps proportions using imagemagick
+find "${FOLDER}" -iname '*.jpg' -o -iname '*.png' -exec convert \{} -verbose -resize "${WIDTHT}"\> \{} \;
+img-optimize --std --path "${FOLDER}"
+

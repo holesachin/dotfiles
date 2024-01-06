@@ -1,0 +1,36 @@
+#!/usr/bin/env bash 
+
+# = help
+if [[ ${1} == "-h" ]] ; then
+    echo "usage: 
+    script_name <output_filename> <input_data>
+    "
+    exit
+fi
+
+# = compress adn load data in script 
+if [[ "${1}" ]]; then 
+    # compress data
+    tar -czvf "/tmp/${1}.tar.gz" "${2}" && echo " = data compressed"
+
+    # create new script
+    cat "${0}" > "${1}" && echo " = new script created"
+
+    # give exicute permission
+    sudo chmod +x "${1}" 
+
+    # load data in script 
+    cat "/tmp/${1}.tar.gz" >> "${1}" && echo " = data loaded in script"
+
+    # exit script 
+    exit
+fi
+
+# = get data from script 
+if [[ $(sed '0,/^#EOF#$/d' $0) ]] ; then  
+    # print everything after '#EOF#'
+    sed '0,/^#EOF#$/d' $0 | tar zx && echo " = data extracted" ; exit 
+fi
+
+# make shure don't emty lines after '#EOF#'
+#EOF#

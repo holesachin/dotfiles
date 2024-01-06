@@ -1,0 +1,91 @@
+# espanso match file
+
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+
+  # Print the current date
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%d/%m/%Y"
+
+
+
+  # Calculator
+  - trigger: ":vcalc"
+    replace: "{{result}}"
+    vars:
+    - name: input
+      type: form
+      params:
+        layout: |
+          [[val]]
+    - name: result
+      type: shell
+      params:
+       cmd: "echo {{input.val}} = $( echo {{input.val}} | bc --mathlib)"
+
+  - regex: ":cl (?P<action>.*):"
+    replace: "{{return}}"
+    vars:
+      - name: return
+        type: shell
+        params:
+          cmd: "echo '{{action}}' | bc --mathlib"
+
+  
+  # espanso specific commands
+  - trigger: ":esp help"
+    replace: "{{output}}"
+    vars: 
+      - name: output
+        type: shell
+        params:
+          cmd: "xdg-open https://espanso.org"
+
+ 
+  # run commands
+  - regex: ":cmd (?P<action>.*):"
+    replace: "{{return}}"
+    vars:
+      - name: return
+        type: shell
+        params:
+          cmd: "echo '{{action}}'"
+
+  # idea
+  - regex: "idea! (?P<idea>.*)\\."
+    replace: "{{return}}"
+    vars:
+      - name: return
+        type: shell
+        params:
+          cmd: "echo '{{idea}}'"
+
+
+  # 'bash bang!'
+  - trigger: ":bash"
+    replace: "#!/usr/bin/env bash"
+    
+
+  # auto insert github link 
+  - trigger: "git clone"
+    replace: "git clone {{gitrepo}}"
+    vars:
+      - name: clipboard
+        type: clipboard
+      - name: gitrepo
+        type: shell
+        params:
+          cmd: "echo '{{clipboard}}' | grep '^https://git'"
+
+

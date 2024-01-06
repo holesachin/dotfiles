@@ -1,0 +1,71 @@
+[helpers]
+
+[default]
+depends = []
+
+[default.files]
+"bg.png" = { target = "~/.config/bg.png", type = "symbolic" }
+"bg2.png" = { target = "~/.config/bg2.png", type = "symbolic" }
+bspwm = "~/.config/bspwm"
+espanso = ""
+flameshot = "~/.config/flameshot"
+foot = "~/.config/foot"
+geany = "~/.config/geany"
+greetd = "~/.config/regreet"
+hypr = "~/.config/hypr"
+kitty = "~/.config/kitty"
+lite-xl = "~/.config/lite-xl"
+mako = "~/.config/mako"
+mpd = ""
+mpv = ""
+ncmpcpp = ""
+neofetch = "~/.config/neofetch"
+nvim = "~/.config/nvim"
+nwg-displays = "~/.config/nwg-displays"
+nwg-drawer = "~/.config/nwg-drawer"
+nwg-panel = "~/.config/nwg-panel"
+pcmanfm = ""
+rofi = ""
+scripts = "~/.local/scripts"
+shell = "~/.config/shell"
+swaylock = "~/.config/swaylock"
+sxhkd = "~/.config/sxhkd"
+sxiv = "~/.config/sxiv"
+tmux = "~/.config/tmux"
+tofi = "~/.config/tofi"
+udev = ""
+ulauncher = ""
+wayfire = ""
+wf = ""
+xdg = "~/.config/"
+
+[default.variables]
+
+
+[bash.files]
+"bash/bashrc" = "~/.bashrc"
+
+[zsh.files]
+"zsh/zshrc" = "~/.zshrc"
+
+
+[alacritty.files]
+alacritty = "~/.config/alacritty"
+
+[alacritty.variables]
+theme = "one_dark"
+term_font = "JetBrainsMono Nerd Font"
+
+
+[wofi.files]
+wofi = "~/.config/wofi"
+
+
+[lf.files]
+lf = { target = "~/.config/lf", type = "symbolic" }
+
+[waybar.files]
+waybar = "~/.config/waybar"
+
+
+

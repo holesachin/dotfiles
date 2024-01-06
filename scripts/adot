@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+DOTFILE="${HOME}/.local/archin"
+LOGFILE="${DOTFILE}/links"
+FILE=$(realpath ${1})
+
+_log_filepath() {
+	echo -e "${FILE}    -->     ${DOTFILE}/$(basename ${FILE})" | tee -a ${LOGFILE}
+}
+
+_create_link() {
+	if [[ ! -z ${FILE} ]]; then
+		if [[ -L ${FILE} ]]; then
+			echo -e "[WARNNING]: '${FILE}'  Already Linked." && _create_link
+		else
+			ln -s ${DOTFILE}/$(basename ${FILE}) ${FILE}
+			_log_filepath
+		fi
+	fi
+}
+
+# move file
+_movefile() {
+	if [[ -e ${DOTFILE}/$(basename ${FILE}) ]]; then
+		echo -e "[WARNNING]: '${FILE}'  Already Exists."
+	else
+		mv ${FILE} ${DOTFILE}
+	fi
+	_create_link
+}
+
+# if symlink
+if [[ -L ${FILE} ]]; then
+	echo -e "[WARNNING]: '${FILE}' Already Linked."
+else
+	_movefile
+fi

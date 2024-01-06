@@ -1,0 +1,47 @@
+#!/usr/bin/env bash 
+
+# Configuration = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+VIDEO_DIR="${HOME}/me/videos"
+THUMBNAILS="${HOME}/.cache/videobrowser"
+
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+# get files Full path
+videofullpath=$(find "${VIDEO_DIR}" -type f)
+
+# get video name 
+for FILE in $videofullpath; do 
+    # rename video files if contains spces
+    if [[ $(echo "${FILE}" | grep " ") ]]; then
+        mv -f "${FILE}" $(echo "${FILE}" | tr ' ' '-')
+        # get files Full path
+        videofullpath=$(find "${VIDEO_DIR}" -type f)
+    fi
+
+    # extract file name
+    video_names+="$(basename ${FILE})\n"
+
+    # create video thumbnails 
+    [[ -d ${THUMBNAILS} ]] || mkdir ${THUMBNAILS}
+    if [[ ! -f "${THUMBNAILS}/$(basename ${FILE}).jpg" ]]; then
+        notify-send "Video Browser" "generating thumbnails"
+        ffmpeg -ss 00:00:02.000 -i "${FILE}" -vframes 1 "${THUMBNAILS}"/$(basename ${FILE}).jpg
+    fi 
+done
+
+# select video to play
+selected=$(basename $(sxiv -trboqg 1047x570 ${THUMBNAILS} | sed 's/.jpg//g'))
+
+# play video 
+if [[ ! -z ${selected} ]]; then
+    for FILE in ${videofullpath}; do 
+        [[ $(echo -e ${FILE} | grep "${selected}") ]] && VIDEO="${FILE}" 
+    done
+
+    mpv ${VIDEO} & [[ -z ${VIDEO} ]] || notify-send "Playing" "${selected}" 
+fi
+
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+exit 
+# = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
