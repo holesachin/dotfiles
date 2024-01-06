@@ -4,7 +4,7 @@ set icons true
 set previewer '~/.config/lf/scope'
 set cleaner '~/.config/lf/cleaner'
 set preview true 
-set autoquit on
+set autoquit true
 set drawbox true
 
 # Custom Functions = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
