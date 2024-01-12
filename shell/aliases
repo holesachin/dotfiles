@@ -19,6 +19,7 @@ vim() {
 # aliaces 
 alias fzf='fzf --border bold'
 alias rm='trash'
+alias del='/bin/rm -rf'
 # alias lf='lfub'
 alias bin='$HOME/.local/bin'
 
@@ -28,7 +29,6 @@ alias cat='bat -p'
 alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -alFh'
-alias l='ls'
 alias l.="ls -A | egrep '^\.'"
 alias listdir="ls -d */ > list"
 
