@@ -45,3 +45,8 @@ bindkey -v
 
 # kali vm
 alias kali='ssh sachin@192.168.122.148'
+
+# zoxide
+eval "$(zoxide init zsh)"
+
+PATH=~/.console-ninja/.bin:$PATH

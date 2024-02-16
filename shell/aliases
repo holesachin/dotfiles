@@ -190,6 +190,27 @@ up ()
     cd $d
 }
 
+# vim switcher
+for nv in $(find ${HOME}/.config/nvim -maxdepth 1 -type d | tail -n +2 | xargs -I '{}' basename {}); do
+	eval "alias nvim-${nv}='NVIM_APPNAME=nvim/${nv}'"
+done
+
+export NVIM_APPNAME='nvim/default'
+
+function nvims() {
+  items=$(find ${HOME}/.config/nvim -maxdepth 1 -type d | tail -n +2 | xargs -I '{}' basename {})
+  config=nvim/$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config="nvim/default"
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
+
+bindkey -s ^a "nvims\n"
+
 # auto-cpufreq auto completion
 # if [[ "$SHELL" =~ "zsh" ]]; then
 #     eval "$(_AUTO_CPUFREQ_COMPLETE=zsh_source auto-cpufreq)"
