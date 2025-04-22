@@ -1,18 +1,25 @@
+#!usr/bin/env bash 
+#
+#
+
 # global key bindings  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =  
 
-# Terminal (alacritty)
+# Terminal tmux (kitty)
 super + Return
-	alacritty
-   #kitty
+	pgrep kitty && bspc desktop -f "1" || kitty #-e tmux -u attach -t "arch" >/dev/null || tmux -u new -s "arch" 
+
+# Terminal (Alacritty)
+super + shift + Return
+  alacritty
 
 # rofi launcher & menus  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 # Rofi App Launcher
+super + d
+  ~/.config/rofi/launchers/type-7/launcher.sh
+
 super + {r,c,e,n,w,s} 
 	rofi -show {run,calc,emoji,wifimenu,window,search}  
-
-super + d 
-   ulauncher-toggle
 
 alt + c
 	rofi-menu clip
@@ -23,7 +30,7 @@ super + x
 
 # display 
 super + m 
-   $HOME/.local/scripts/exmon
+  $HOME/.local/scripts/exmon
 
 # wifimenu
 super + alt + i
@@ -44,8 +51,14 @@ super + l
 # applications - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 # Launch Apps
-super + shift + {f,w,e,b}
-	{pcmanfm,firefox,code,foliate}
+super + shift + {f,e,b}
+	{pcmanfm,code,foliate}
+
+# zen-browser
+super + shift + w
+  pgrep zen && bspc desktop -f "2" || zen-browser
+super + w
+  pgrep zen && bspc desktop -f "2" || zen-browser
 
 # scratch pad 
 alt + Return
@@ -65,7 +78,7 @@ super + p
 
 # image viewvier (sxiv)
 super + i
-	sxiv -btgr 1047x570 $HOME/pix/walls/* $HOME/pix/wallpapers/*  
+	sxiv -btrg 1047x570 $HOME/pix/walls
 
 # screenkey toggle
 super + shift + K
@@ -74,37 +87,37 @@ super + shift + K
 # web applications - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
 super + alt + a
-   xclip -o | grep "^http" && brave-browser --app="$(xclip -o)" || notify-send "sxhkd" "no url found!"
+   xclip -o | grep "^http" && google-chrome-stable --app="$(xclip -o)" || notify-send "sxhkd" "no url found!"
 
 super + alt + y 
-   brave-browser --app="https://youtube.com"
+   google-chrome-stable --app="https://youtube.com"
 
 super + alt + l 
-   brave-browser --app="https://www.linkedin.com"
+   google-chrome-stable --app="https://www.linkedin.com"
 
 super + alt + p
-   brave-browser --app="https://pastebin.com"
+   google-chrome-stable --app="https://pastebin.com"
 
 super + alt + d
-   brave-browser --app="https://discord.com/channels/@me"
+   google-chrome-stable --app="https://discord.com/channels/@me"
 
 super + alt + n 
-   brave-browser --app="https://www.notion.so/sachinhole"
+   google-chrome-stable --app="https://www.notion.so/sachinhole"
 
 super + alt + r
-   brave-browser --app="https://youtube.com/playlist?list=PLu71SKxNbfoDqgPchmvIsL4hTnJIrtige&si=UaMKTcKiZfkFEZ4J"
+   google-chrome-stable --app="https://youtube.com/playlist?list=PLu71SKxNbfoDqgPchmvIsL4hTnJIrtige&si=UaMKTcKiZfkFEZ4J"
 
 super + alt + w   
-   brave-browser --app="https://web.whatsapp.com"
+   google-chrome-stable --app="https://web.whatsapp.com"
 
 super + alt + s
-   brave-browser --app="https://scrimba.com/dashboard"
+   google-chrome-stable --app="https://scrimba.com/dashboard"
 
 super + alt + t
-   brave-browser --app="https://youtube.com/playlist?list=PL8p2I9GklV44sj_Ikp8jQSvwD-m9htnHT&si=FqUBYGgwNc2I9kb8"
+   google-chrome-stable --app="https://youtube.com/playlist?list=PL8p2I9GklV44sj_Ikp8jQSvwD-m9htnHT&si=FqUBYGgwNc2I9kb8"
 
 super + alt + e
-   brave-browser --app="https://excalidraw.com"
+   google-chrome-stable --app="https://excalidraw.com"
 
 super + alt + o 
    barve-browser --app="https://exercism.org"
@@ -150,6 +163,12 @@ XF86Audio{Next,Prev,Play,Stop}
 super + b
     {polybar-msg cmd hide && bspc config top_padding +0 ,\
     polybar-msg cmd show && bspc config top_padding 28}
+
+super + shift + m
+  {brightnessctl set 0% ,brightnessctl set 30%, brightnessctl set 60%}
+
+super + z
+  {bspc config window_gap 100, bspc config window_gap 7, bspc config window_gap 0}
 
 # global key bindings  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =  
 
