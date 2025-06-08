@@ -17,8 +17,8 @@ ctrl + shift + {q,r}
 	bspc {quit,wm -r}
 	
 # Split horizontal, vertical or cancel
-super + {h,v,q}
-	bspc node -p {east,south,cancel}
+# super + {h,v,q}
+# 	bspc node -p {east,south,cancel}
 
 # Preselect the ratio
 super + ctrl + {1-9}
@@ -46,13 +46,23 @@ super + ctrl + {m,x,y,z}
 super + {_,shift + }{Left,Down,Up,Right}
 	bspc node -{f,s} {west,south,north,east}
 
+super + {_,shift + }{h,j,k,l}
+	bspc node -{f,s} {west,south,north,east}
+
 # Change focus to next window, including floating window
 alt + {_,shift + }Tab
 	bspc node -f {next.local,prev.local}
 
+# Switch window focus
+super + {h,j,k,l}
+ bspc node -f {west,south,north,east}
+
 # Switch workspace
 ctrl + alt + {Left,Right}
 	bspc desktop -f {prev.local,next.local}
+
+super + {o,i}
+	bspc node -f {next.local,prev.local}
 
 # Switch to last opened workspace
 super + {Tab,grave}
@@ -64,6 +74,9 @@ super + {_,shift + }{1-8}
 
 ## Move floating windows
 alt + shift + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+alt + shift + {h,j,k,l}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # Resize windows

@@ -1,0 +1,15 @@
+font-family = "ShureTechMono Nerd Font"
+font-size = 11
+background-opacity = 9
+
+window-padding-balance = true
+window-padding-x = 5
+window-padding-y = 5
+
+window-decoration = false
+
+theme = GruvboxDarkHard
+
+quick-terminal-position = top
+quick-terminal-autohide = true
+keybind = ctrl+a>t=toggle_quick_terminal

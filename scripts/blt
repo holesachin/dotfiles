@@ -13,8 +13,8 @@ fi
 
 # menu
 if [[ -t 1 ]]; then
-	[[ -z ${@} ]] && _menu="gum choose" || _menu="${@}"
-	#[[ -z ${@} ]] && _menu="fzf" || _menu="${@}"
+	# [[ -z ${@} ]] && _menu="gum choose" || _menu="${@}"
+	[[ -z ${@} ]] && _menu="fzf" || _menu="${@}"
 else
 	_menu="rofi -dmenu -p Bluetooth: "
 fi

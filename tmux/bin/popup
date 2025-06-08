@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+width=${2:-90%}
+height=${2:-90%}
+
+tmux display-popup -d '#{pane_current_path}' -h${height} -w${width} -E ${1}
+

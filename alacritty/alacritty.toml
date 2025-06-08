@@ -1,8 +1,8 @@
+[general]
 import = [
-  "/home/sachin/.config/alacritty/themes/{{theme}}.toml",
+  "/home/sachin/.config/alacritty/themes/kaisa.toml",
   "/home/sachin/.config/alacritty/fonts.toml"
 ]
-
 live_config_reload = true
 
 [cursor]
@@ -19,13 +19,13 @@ WINIT_X11_SCALE_FACTOR = "1.0"
 [window]
 decorations = "full"
 dynamic_title = true
-opacity = 0.98
+opacity = 0.97
 startup_mode = "Windowed"
 
 [window.dimensions]
 columns = 111
-lines = 23
+lines = 21
 
 [window.padding]
-x = 18
-y = 18
+x = 10
+y = 10

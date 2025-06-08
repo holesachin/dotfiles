@@ -2,10 +2,29 @@
 # site  : https://zapzsh.org
 # yt    : https://youtu.be/LhDMw6n3GI4?si=Jl0aOM3faxEHkE5p
 
+# path
+export PATH="${PATH}:${HOME}/go/bin:${HOME}/.local/scripts"
+
+# android studio
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:/opt/android-studio/bin
+
+# startx
+# if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then 
+#   exec startx; 
+# fi
+
 # start tmux
-# if [[ -z "$TMUX" ]]; then
-#     tmux -u attach -t TMUX || tmux -u new -s TMUX
-# fi 
+if [[ -z "$TMUX" ]]; then
+    tmux -u attach -t arch || tmux -u new -s arch
+fi 
+
+# install zap
+if [[ ! -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ]]; then
+  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+fi
 
 # load zap installer
 if [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ]; then  
@@ -13,7 +32,11 @@ if [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ]; then
 fi
 
 # load aliases
-[ -f "${HOME}/.config/shell/aliases" ] && source "${HOME}/.config/shell/aliases"
+# [ -f "${HOME}/.config/shell/aliases" ] && source "${HOME}/.config/shell/aliases"
+
+# general alias
+alias vim='nvim'
+alias vi='nvim'
 
 # zap alias
 alias zapw='echo https://zapzsh.org'
@@ -23,11 +46,19 @@ alias zshrc="vim ${HOME}/.zshrc"
 
 # plugins
 plug "zap-zsh/supercharge"
-plug "zap-zsh/zap-prompt"
+# plug "zap-zsh/zap-prompt"
 plug "zap-zsh/sudo"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "MichaelAquilina/zsh-you-should-use"
+
+# zsh prompt
+# PS1="%F{green}%B%m%b%f %1~ - "
+PS1="%F{blue}%1~  %f"
+
+if [[ ${TERM_PROGRAM} == "tmux" ]]; then
+  RPROMPT="%F{yellow}$(tmux display-message -p '#S')%f"
+fi
 
 # load and initialise completion system
 autoload -Uz compinit
@@ -36,7 +67,6 @@ compinit
 # key bindigs
 bindkey "^F" "lf"
 
-PS1+=" "
 
 alias fireapp='firefox -kiosk -new-window'
 
@@ -47,6 +77,28 @@ bindkey -v
 alias kali='ssh sachin@192.168.122.148'
 
 # zoxide
-eval "$(zoxide init zsh)"
+# eval "$(zoxide init zsh)"
 
-PATH=~/.console-ninja/.bin:$PATH
+#
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun completions
+[ -s "/home/sachin/.bun/_bun" ] && source "/home/sachin/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/home/sachin/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+
+# Load Angular CLI autocompletion.
+# source <(ng completion script)
