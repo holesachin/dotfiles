@@ -179,3 +179,7 @@ configuration {
 	me-accept-custom: "Control+MouseDPrimary";
 */
 }
+
+//@theme "/usr/share/rofi/themes/sidebar.rasi"
+
+@theme "/usr/share/rofi/themes/DarkBlue.rasi"

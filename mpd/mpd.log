@@ -14,3 +14,10 @@ Dec 12 17:39 : player: played "valentine/Zaroorat_Full_Video_Song___Ek_Villain__
 Dec 12 17:42 : pipewire_output: Decoder is too slow; playing silence to avoid xrun
 Dec 12 17:45 : player: played "valentine/_DJ__Video_Song___Hey_Bro___Sunidhi_Chauhan__Feat__Ali_Zafar___Ganesh_Acharya___T-Series.mp3"
 Dec 12 18:48 : player: played "valentine/_Hawa_Hawa___Full_Video_Song____Mubarakan___Anil_Kapoor__Arjun_Kapoor__Ileana_D_Cruz__Athiya_Shetty.mp3"
+2025-06-21T17:46:41 exception: Failed to access /home/sachin/me/music: No such file or directory
+2025-06-21T17:46:41 exception: inotify_add_watch("/home/sachin/me/music") failed: No such file or directory
+2025-06-21T17:56:31 exception: Not playing
+2025-06-21T18:01:32 ffmpeg/opus: Could not update timestamps for skipped samples.
+2025-06-21T18:02:18 player: played "https://rr3---sn-cvh76nle.googlevideo.com/videoplayback?expire=1750530669&ei=DaZWaLnuDPSavcAPlPKWiAU&ip=59.96.93.19&id=o-ADNrBMjrffiv7DLOi_1auxtL8Tr3ukOcrtX6HDNaxnUg&itag=251&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&met=1750509069%2C&mh=cx&mm=31%2C29&mn=sn-cvh76nle%2Csn-cvh7knsz&ms=au%2Crdu&mv=m&mvi=3&pl=20&rms=au%2Cau&initcwndbps=402500&bui=AY1jyLNR_RPBLZBfpCRZNzmW6SfonJ1tJ6LaH0XTes3yoABKQu8ZvzEC556YAKBWH7PCLo7E5gWRWYhg&vprv=1&svpuc=1&mime=audio%2Fwebm&ns=_GWNta7OG6guSGlVBI43NnkQ&rqh=1&gir=yes&clen=4436825&dur=245.041&lmt=1749523652892743&mt=1750508721&fvip=5&keepalive=yes&lmw=1&fexp=51466643%2C51466697&c=TVHTML5&sefc=1&txp=5532534&n=5prYueoXgy5yaA&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cbui%2Cvprv%2Csvpuc%2Cmime%2Cns%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt&sig=AJfQdSswRQIhAJBtZOS2I9pSS9xInxTrGiVGR5z1uOch4DndOOvIAqW4AiBePpjBMJgWldMJLBqGagvtj9KFaBaUGyOfv-TOK6Hasw%3D%3D&lsparams=met%2Cmh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Crms%2Cinitcwndbps&lsig=APaTxxMwRgIhALilx4aTSBOpODuMhNJ-UtVgn9Cx3d8DeNapRqiJjKOOAiEAlB0LpCCC0MOSNjPAGAMTWfFCx6uzvA1BNxtRGNcpzbg%3D"
+2025-06-21T18:03:32 playlist: Failed to load "This_Is_Alan_Walker/Sorry.mp3".
+2025-06-21T18:03:32 exception: Bad song index

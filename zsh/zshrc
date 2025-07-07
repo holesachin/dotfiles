@@ -10,6 +10,7 @@ export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/opt/android-studio/bin
+export CAPACITOR_ANDROID_STUDIO_PATH=/opt/android-studio/bin/studio.sh 
 
 # startx
 # if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then 
@@ -52,7 +53,7 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "MichaelAquilina/zsh-you-should-use"
 
-# zsh prompt
+# zsh promp
 # PS1="%F{green}%B%m%b%f %1~ - "
 PS1="%F{blue}%1~  %f"
 
@@ -64,17 +65,8 @@ fi
 autoload -Uz compinit
 compinit
 
-# key bindigs
-bindkey "^F" "lf"
-
-
-alias fireapp='firefox -kiosk -new-window'
-
 # set zsh key
 bindkey -v
-
-# kali vm
-alias kali='ssh sachin@192.168.122.148'
 
 # zoxide
 # eval "$(zoxide init zsh)"

@@ -99,7 +99,7 @@ super + alt + p
    google-chrome-stable --app="https://pastebin.com"
 
 super + alt + d
-   google-chrome-stable --app="https://discord.com/channels/@me"
+   google-chrome-stable --app="https://docs.google.com"
 
 super + alt + n 
    google-chrome-stable --app="https://www.notion.so/sachinhole"
