@@ -6,8 +6,8 @@ export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
 
 # Battery percentage at which to notify
 WARNING_LEVEL=21
-BATTERY_DISCHARGING=$(/usr/bin/cat /sys/class/power_supply/BAT1/status)
-BATTERY_LEVEL=$(/usr/bin/cat /sys/class/power_supply/BAT1/capacity)
+BATTERY_DISCHARGING=$(/usr/bin/cat /sys/class/power_supply/BAT*/status)
+BATTERY_LEVEL=$(/usr/bin/cat /sys/class/power_supply/BAT*/capacity)
 
 # If the battery is charging and is full
 if [[ $BATTERY_LEVEL -gt 97 ]] && [[ $BATTERY_DISCHARGING == "Discharging" ]]; then

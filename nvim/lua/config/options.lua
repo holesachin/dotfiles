@@ -33,8 +33,6 @@ vim.opt.showmode = false
 vim.opt.laststatus = 3
 
 -- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
 vim.opt.clipboard = "unnamedplus"
 
 -- Enable break indent
@@ -42,6 +40,8 @@ vim.opt.breakindent = true
 
 -- Save undo history
 vim.opt.undofile = true
+
+vim.opt.autoread = true
 
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.opt.ignorecase = true
@@ -82,20 +82,32 @@ vim.opt.scrolloff = 10
 -- Auto Session
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
+-- Command-line completion
+vim.opt.wildmenu = true
+vim.opt.wildmode = "longest:full,full"
+vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
+
+-- Better diff options
+vim.opt.diffopt:append("linematch:60")
+
+-- Performance improvements
+vim.opt.redrawtime = 10000
+vim.opt.maxmempattern = 20000
+
 -- Set retrobox colorscheme
--- vim.cmd("colorscheme wildcharm")
--- vim.g.retrobox_contrast = "high"
+-- vim.cmd("colorscheme retrobox")
+vim.g.retrobox_contrast = "high"
 
 -- Set background color
 vim.opt.background = "dark" -- "light" for light themes
 
 -- Transparent background for Neovim UI elements
-vim.cmd("hi Normal guibg=NONE ctermbg=NONE")     -- Transparent background for normal text
-vim.cmd("hi StatusLine guibg=NONE ctermbg=NONE") -- Transparent status line
-vim.cmd("hi VertSplit guibg=NONE ctermbg=NONE")  -- Transparent vertical split lines
-vim.cmd("hi TabLine guibg=NONE ctermbg=NONE")    -- Transparent tab line
-vim.cmd("hi LineNr guibg=NONE ctermbg=NONE")     -- Transparent line numbers
-vim.cmd("hi SignColumn guibg=NONE ctermbg=NONE") -- Transparent sign column (for diagnostics)
-vim.cmd("hi Pmenu guibg=NONE ctermbg=NONE")      -- Transparent popup menu (e.g., completion)
-vim.cmd("hi CursorLine guibg=NONE ctermbg=NONE") -- Transparent cursor line
-vim.cmd("hi Search guibg=NONE ctermbg=NONE")     -- Transparent search highlights
+-- vim.cmd("hi Normal guibg=NONE ctermbg=NONE")     -- Transparent background for normal text
+-- vim.cmd("hi StatusLine guibg=NONE ctermbg=NONE") -- Transparent status line
+-- vim.cmd("hi VertSplit guibg=NONE ctermbg=NONE")  -- Transparent vertical split lines
+-- vim.cmd("hi TabLine guibg=NONE ctermbg=NONE")    -- Transparent tab line
+-- vim.cmd("hi LineNr guibg=NONE ctermbg=NONE")     -- Transparent line numbers
+-- vim.cmd("hi SignColumn guibg=NONE ctermbg=NONE") -- Transparent sign column (for diagnostics)
+-- vim.cmd("hi Pmenu guibg=NONE ctermbg=NONE")      -- Transparent popup menu (e.g., completion)
+-- vim.cmd("hi CursorLine guibg=NONE ctermbg=NONE") -- Transparent cursor line
+-- vim.cmd("hi Search guibg=NONE ctermbg=NONE")     -- Transparent search highlights

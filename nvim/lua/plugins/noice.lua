@@ -41,7 +41,7 @@ return {
           height = 10,
         },
         border = {
-          style = "single",
+          style = "",
           padding = { 0, 1 },
         },
         win_options = {
