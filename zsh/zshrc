@@ -55,11 +55,12 @@ plug "MichaelAquilina/zsh-you-should-use"
 
 # zsh promp
 # PS1="%F{green}%B%m%b%f %1~ - "
-PS1="%F{blue}%1~  %f"
+PS1="%F{blue}[%F{yellow} %1~ %F{blue}]%F{red} %f"
 
-if [[ ${TERM_PROGRAM} == "tmux" ]]; then
-  RPROMPT="%F{yellow}$(tmux display-message -p '#S')%f"
-fi
+# show session name in prompt if in tmux
+# if [[ ${TERM_PROGRAM} == "tmux" ]]; then
+#   RPROMPT="%F{yellow}$(tmux display-message -p '#S')%f"
+# fi
 
 # load and initialise completion system
 autoload -Uz compinit

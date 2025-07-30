@@ -22,10 +22,6 @@ return { -- Collection of various small independent plugins/modules
     -- Animate common Neovim actions
     require("mini.animate").setup()
 
-
-    -- Mini Pick
-    -- require('mini.pick').setup()
-
     -- Mini Pairs
     require("mini.pairs").setup()
 
@@ -33,6 +29,13 @@ return { -- Collection of various small independent plugins/modules
     require("mini.comment").setup()
 
     -- Mini Session
-    -- require("mini.sessions").setup()
+    -- https://github.com/echasnovski/mini.sessions?tab=readme-ov-file#default-config
+    require("mini.sessions").setup({
+      autoread = true,
+      autowrite = true,
+      directory = vim.fn.stdpath('data') .. '/sessions', -- Custom session directory
+      file = 'project_session.vim',
+      verbose = { write = true }, -- Show verbose messages when writing
+    })
   end,
 }
