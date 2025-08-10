@@ -3,5 +3,5 @@
 if [ ${*} ]; then
 	nmcli device wifi connect "${*}" --ask
 else
-	nmcli device wifi connect $(nmcli device wifi rescan && sleep 1 ; nmcli device wifi list | tail -n +2 | fzf | tr '*' ' ' | awk '{print $2}') --ask
+	nmcli device wifi connect $(nmcli device wifi rescan && sleep 1 ; nmcli device wifi list | tail -n +2 | fzf --info inline | tr '*' ' ' | awk '{print $2}') --ask
 fi

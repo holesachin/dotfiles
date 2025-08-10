@@ -1,6 +1,3 @@
-# LAUNCH
-shell /bin/bash -l -c 'tmux -u attach -t arch || tmux -u new -s arch || exec bash'
-
 # FONT
 font_family        ShureTechMono Nerd Font
 font_size          11.0
@@ -27,19 +24,22 @@ initial_window_height 400
 
 # LAYOUTS
 enabled_layouts            splits,stack,fat,tall,grid
+include                    splits.conf
 window_resize_step_cells   2
 window_resize_step_lines   2
 visual_window_select_characters 1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ
 
 # BEHAVIOR
-confirm_os_window_close 0
+confirm_os_window_close -1
 linux_display_server    x11
 shell_integration       enabled
 term                    xterm-256color
 enable_audio_bell       no
 allow_hyperlinks        yes
 show_hyperlink_targets  yes
+remote_kitty            if-needed
 allow_remote_control    yes
+startup_session         session.conf
 
 # TAB BAR
 tab_bar_style powerline
@@ -92,3 +92,4 @@ map ctrl+a>ctrl+a         send_text all \x01
 
 # THEME
 include current-theme.conf
+

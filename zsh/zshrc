@@ -18,9 +18,9 @@ export CAPACITOR_ANDROID_STUDIO_PATH=/opt/android-studio/bin/studio.sh
 # fi
 
 # start tmux
-if [[ -z "$TMUX" ]]; then
-    tmux -u attach -t arch || tmux -u new -s arch
-fi 
+# if [[ -z "$TMUX" ]]; then
+#     tmux -u attach -t arch || tmux -u new -s arch
+# fi 
 
 # install zap
 if [[ ! -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ]]; then
@@ -55,7 +55,7 @@ plug "MichaelAquilina/zsh-you-should-use"
 
 # zsh promp
 # PS1="%F{green}%B%m%b%f %1~ - "
-PS1="%F{blue}[%F{yellow} %1~ %F{blue}]%F{red} %f"
+PS1="%F{blue}[%F{yellow} %1~ %F{blue}]%F{green} %f"
 
 # show session name in prompt if in tmux
 # if [[ ${TERM_PROGRAM} == "tmux" ]]; then

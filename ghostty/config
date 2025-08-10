@@ -8,7 +8,8 @@ window-padding-y = 5
 
 window-decoration = false
 
-theme = GruvboxDarkHard
+#theme = OneHalfDark
+theme = gruvbox-material
 
 quick-terminal-position = top
 quick-terminal-autohide = true
