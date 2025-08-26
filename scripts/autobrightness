@@ -3,11 +3,11 @@
 # set minimum brightness value
 # brightnessctl --min-value 7%
 
-_battery_status=$(</sys/class/power_supply/BAT1/status)
+_battery_status=$(</sys/class/power_supply/BAT*/status)
 
 # set bright when on 'ac_power'
 if [[ ${_battery_status} == "Charging" || ${_battery_status} == "Full" ]]; then
-	brightnessctl --quiet set 51% && notify-send "Autobrightness" "Brightness 51%"
+	brightnessctl --quiet set 70% && notify-send "Autobrightness" "Brightness 70%"
 	exit
 fi
 

@@ -5,10 +5,10 @@ state: stop
 random: 0
 repeat: 0
 single: 0
-consume: 1
+consume: 0
 crossfade: 0
 mixrampdb: 0
 mixrampdelay: -1
-lastloadedplaylist: Alan Walker
+lastloadedplaylist: 
 playlist_begin
 playlist_end
