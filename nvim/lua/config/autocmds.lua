@@ -93,3 +93,28 @@ end, {
 --     end,
 --   })
 -- end
+
+
+-- -- Automatically load a session named after the current cwd
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   callback = function()
+--     -- Skip if Neovim was started with a file argument
+--     if vim.fn.argc() > 0 then return end
+--
+--     local cwd = vim.fn.getcwd()
+--     local session_name = vim.fn.fnamemodify(cwd, ":t") -- last folder name
+--     if sessions.read(session_name, { force = false }) then
+--       print("Loaded session for " .. session_name)
+--     end
+--   end,
+-- })
+--
+-- -- Save session automatically on exit
+-- vim.api.nvim_create_autocmd("VimLeavePre", {
+--   callback = function()
+--     local cwd = vim.fn.getcwd()
+--     local session_name = vim.fn.fnamemodify(cwd, ":t")
+--     sessions.write(session_name, { force = true })
+--   end,
+-- })
+

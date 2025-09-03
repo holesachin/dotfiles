@@ -45,6 +45,8 @@ c.tabs.show = 'switching'
 c.tabs.width = '10%'
 c.tabs.max_width = 200
 
+c.fonts.default_family = 'ShureTechMono Nerd Font'
+
 c.url.default_page = 'file:///home/sachin/.config/qutebrowser/homepage.html'
 
 c.url.searchengines = {
@@ -57,13 +59,14 @@ c.url.start_pages = 'file:///home/sachin/.config/qutebrowser/homepage.html'
 
 c.window.hide_decoration = True
 
-# c.colors.webpage.darkmode.enabled = True
-# c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
-# c.colors.webpage.darkmode.policy.images = 'smart'
+c.colors.webpage.darkmode.enabled = False
+c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
+c.colors.webpage.darkmode.policy.images = 'smart'
+c.colors.webpage.preferred_color_scheme = 'dark'
 
 # Binding for Normal Mode
 config.bind('t', 'cmd-set-text -s :open -t ')
-config.bind('M', 'hint links spawn mpv {hint-url}')
+config.bind('M', 'hint links spawn mpv --fs {hint-url}')
 config.bind('zs', 'config-cycle statusbar.show always never')
 config.bind('zb', 'config-cycle tabs.show always never')
 config.bind('zz', 'config-cycle statusbar.show always never ;; config-cycle tabs.show always never')

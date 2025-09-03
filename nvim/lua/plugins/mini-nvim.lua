@@ -28,14 +28,55 @@ return { -- Collection of various small independent plugins/modules
     -- Mini Comment
     require("mini.comment").setup()
 
+    -- Mini Notify
+    require('mini.notify').setup({
+      -- Notifications about LSP progress
+      lsp_progress = {
+        enable = true,
+        level = 'INFO',
+        duration_last = 3000,
+      },
+
+    })
+
     -- Mini Session
     -- https://github.com/echasnovski/mini.sessions?tab=readme-ov-file#default-config
     require("mini.sessions").setup({
       autoread = true,
       autowrite = true,
+      file = '', -- don't create Session.vim in cwd
       directory = vim.fn.stdpath('data') .. '/sessions', -- Custom session directory
-      file = 'project_session.vim',
-      verbose = { write = true }, -- Show verbose messages when writing
+      verbose = { read = true, write = true }, -- Show messages when writing
+    })
+
+    -- Mini Hipatterns
+    require('mini.hipatterns').setup({
+      highlighters = {
+        -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+        fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+        hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
+        todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
+        note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
+
+        -- Highlight hex color strings (`#rrggbb`) using that color
+        -- hex_color = hipatterns.gen_highlighter.hex_color(),
+      },
+    })
+
+    -- Mini Starter
+    require("mini.starter").setup({
+      header = [[
+                                                    
+             ████ ██████           █████      ██
+            ███████████             █████ 
+            █████████ ███████████████████ ███   ███████████
+           █████████  ███    █████████████ █████ ██████████████
+          █████████ ██████████ █████████ █████ █████ ████ █████
+        ███████████ ███    ███ █████████ █████ █████ ████ █████
+       ██████  █████████████████████ ████ █████ █████ ████ ██████
+
+                                      !! 󰥳  !!
+      ]]
     })
   end,
 }

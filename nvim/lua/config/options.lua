@@ -111,3 +111,11 @@ vim.opt.background = "dark" -- "light" for light themes
 -- vim.cmd("hi Pmenu guibg=NONE ctermbg=NONE")      -- Transparent popup menu (e.g., completion)
 -- vim.cmd("hi CursorLine guibg=NONE ctermbg=NONE") -- Transparent cursor line
 -- vim.cmd("hi Search guibg=NONE ctermbg=NONE")     -- Transparent search highlights
+
+-- Neovide Options
+if vim.g.neovide then 
+
+  vim.o.guifont = "ShureTechMono Nerd Font:h12"
+  vim.g.neovide_refresh_rate = 75
+
+end
