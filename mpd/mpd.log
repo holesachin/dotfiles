@@ -1,23 +1,57 @@
-Dec 12 17:17 : exception: Failed to decode https://rr6---sn-gwpa-o5bd.googlevideo.com/videoplayback?expire=1699646139&ei=WzZOZfnCFMeglQSQ8YeQBQ&ip=2409%3A4081%3A697%3A8700%3A2aea%3A9029%3A983c%3Aecd&id=o-AEk8_zs6FNzKZjCkkKF1ctF3veOHxJ9CTt5f7LD-5cRE&itag=251&source=youtube&requiressl=yes&mh=uP&mm=31%2C29&mn=sn-gwpa-o5bd%2Csn-gwpa-cvhd&ms=au%2Crdu&mv=m&mvi=6&pl=41&gcr=in&initcwndbps=262500&spc=UWF9f2IiQn9bO7bzbcx_Bv-EOxhu1K2N62FaKgDAfw&vprv=1&svpuc=1&mime=audio%2Fwebm&gir=yes&clen=2037809&dur=127.481&lmt=1699056100209389&mt=1699624157&fvip=1&keepalive=yes&fexp=24007246&beids=24350018&c=ANDROID&txp=5532434&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cgcr%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&sig=ANLwegAwRgIhAL7jGuQIDa2YT0x04HnJjN3qcsqU8KbgBDD5ct_mC1JEAiEA_ziywd4oq6tAhLU7YhmGAtQMGs7B0Gg2q2szIf_4yf4%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AM8Gb2swRgIhAN-92aRngOmcV9KfNHpBhAmSRks2mybHSc4fVXJL3TNHAiEA_Z3gZHxwCStFERTn4mJbKfwg8a9r9Vm6IzYxc82e3-I%3D; got HTTP status 403
-Dec 12 17:17 : player: played "https://rr6---sn-gwpa-o5bd.googlevideo.com/videoplayback?expire=1699646139&ei=WzZOZfnCFMeglQSQ8YeQBQ&ip=2409%3A4081%3A697%3A8700%3A2aea%3A9029%3A983c%3Aecd&id=o-AEk8_zs6FNzKZjCkkKF1ctF3veOHxJ9CTt5f7LD-5cRE&itag=251&source=youtube&requiressl=yes&mh=uP&mm=31%2C29&mn=sn-gwpa-o5bd%2Csn-gwpa-cvhd&ms=au%2Crdu&mv=m&mvi=6&pl=41&gcr=in&initcwndbps=262500&spc=UWF9f2IiQn9bO7bzbcx_Bv-EOxhu1K2N62FaKgDAfw&vprv=1&svpuc=1&mime=audio%2Fwebm&gir=yes&clen=2037809&dur=127.481&lmt=1699056100209389&mt=1699624157&fvip=1&keepalive=yes&fexp=24007246&beids=24350018&c=ANDROID&txp=5532434&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cgcr%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&sig=ANLwegAwRgIhAL7jGuQIDa2YT0x04HnJjN3qcsqU8KbgBDD5ct_mC1JEAiEA_ziywd4oq6tAhLU7YhmGAtQMGs7B0Gg2q2szIf_4yf4%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AM8Gb2swRgIhAN-92aRngOmcV9KfNHpBhAmSRks2mybHSc4fVXJL3TNHAiEA_Z3gZHxwCStFERTn4mJbKfwg8a9r9Vm6IzYxc82e3-I%3D"
-Dec 12 17:17 : exception: Failed to decode https://rr6---sn-gwpa-o5bd.googlevideo.com/videoplayback?expire=1699646139&ei=WzZOZfnCFMeglQSQ8YeQBQ&ip=2409%3A4081%3A697%3A8700%3A2aea%3A9029%3A983c%3Aecd&id=o-AEk8_zs6FNzKZjCkkKF1ctF3veOHxJ9CTt5f7LD-5cRE&itag=251&source=youtube&requiressl=yes&mh=uP&mm=31%2C29&mn=sn-gwpa-o5bd%2Csn-gwpa-cvhd&ms=au%2Crdu&mv=m&mvi=6&pl=41&gcr=in&initcwndbps=262500&spc=UWF9f2IiQn9bO7bzbcx_Bv-EOxhu1K2N62FaKgDAfw&vprv=1&svpuc=1&mime=audio%2Fwebm&gir=yes&clen=2037809&dur=127.481&lmt=1699056100209389&mt=1699624157&fvip=1&keepalive=yes&fexp=24007246&beids=24350018&c=ANDROID&txp=5532434&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cgcr%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&sig=ANLwegAwRgIhAL7jGuQIDa2YT0x04HnJjN3qcsqU8KbgBDD5ct_mC1JEAiEA_ziywd4oq6tAhLU7YhmGAtQMGs7B0Gg2q2szIf_4yf4%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AM8Gb2swRgIhAN-92aRngOmcV9KfNHpBhAmSRks2mybHSc4fVXJL3TNHAiEA_Z3gZHxwCStFERTn4mJbKfwg8a9r9Vm6IzYxc82e3-I%3D; got HTTP status 403
-Dec 12 17:19 : pipewire_output: Decoder is too slow; playing silence to avoid xrun
-Dec 12 17:27 : player: played "This_Is_Ava_Max/Kings___Queens.mp3"
-Dec 12 17:28 : player: played "This_Is_Ava_Max/Not_Your_Barbie_Girl.mp3"
-Dec 12 17:29 : ffmpeg/opus: Could not update timestamps for skipped samples.
-Dec 12 17:32 : player: played "https://rr5---sn-gwpa-o5be7.googlevideo.com/videoplayback?expire=1702403960&ei=GEt4ZdLhBaCHjuMPw7yT8A8&ip=2409%3A4081%3A1c09%3A6c2c%3Ae72d%3A7217%3Ad657%3Aa8a&id=o-AGknmflE7P4IO-ug062Ytv1C8KPlfOLGEQRq9QIK6n1-&itag=251&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&mh=Zf&mm=31%2C29&mn=sn-gwpa-o5be7%2Csn-gwpa-cvhe7&ms=au%2Crdu&mv=m&mvi=5&pl=41&initcwndbps=403750&spc=UWF9f1q8nw_piMctQ6JD8xTJkc325jo&vprv=1&svpuc=1&mime=audio%2Fwebm&gir=yes&clen=3715131&dur=223.081&lmt=1700868700887457&mt=1702382014&fvip=2&keepalive=yes&fexp=24007246&c=ANDROID&txp=4532434&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&sig=AJfQdSswRQIgSgHKZH9or4Fu4aMJRmWkm4TxJl_2t3lPwNK8SkAThhkCIQCwEZgkGTGLpjcLaqycaX4O9lnK-cTitptIamGCmDneyA%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AAO5W4owRQIhAOGCu_iknGUEUaRRfE5mm3GWAOOLnxoGV0j5fhqDvGroAiBj2daUQzO7CrVVSKBqFWsT1KoLhUQ3Ea5XRmOOs37ojg%3D%3D"
-Dec 12 17:36 : player: played "Remix_Hits/I_Follow_Rivers_-_The_Magician_Remix.mp3"
-Dec 12 17:36 : exception: Not playing
-Dec 12 17:37 : pipewire_output: Decoder is too slow; playing silence to avoid xrun
-Dec 12 17:38 : player: played "Origins__Deluxe_Edition___Imagine_Dragons_Album_/Bullet_In_A_Gun.mp3"
-Dec 12 17:39 : player: played "valentine/Zaroorat_Full_Video_Song___Ek_Villain___Mithoon___Mustafa_Zahid.mp3"
-Dec 12 17:42 : pipewire_output: Decoder is too slow; playing silence to avoid xrun
-Dec 12 17:45 : player: played "valentine/_DJ__Video_Song___Hey_Bro___Sunidhi_Chauhan__Feat__Ali_Zafar___Ganesh_Acharya___T-Series.mp3"
-Dec 12 18:48 : player: played "valentine/_Hawa_Hawa___Full_Video_Song____Mubarakan___Anil_Kapoor__Arjun_Kapoor__Ileana_D_Cruz__Athiya_Shetty.mp3"
-2025-06-21T17:46:41 exception: Failed to access /home/sachin/me/music: No such file or directory
-2025-06-21T17:46:41 exception: inotify_add_watch("/home/sachin/me/music") failed: No such file or directory
-2025-06-21T17:56:31 exception: Not playing
-2025-06-21T18:01:32 ffmpeg/opus: Could not update timestamps for skipped samples.
-2025-06-21T18:02:18 player: played "https://rr3---sn-cvh76nle.googlevideo.com/videoplayback?expire=1750530669&ei=DaZWaLnuDPSavcAPlPKWiAU&ip=59.96.93.19&id=o-ADNrBMjrffiv7DLOi_1auxtL8Tr3ukOcrtX6HDNaxnUg&itag=251&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&met=1750509069%2C&mh=cx&mm=31%2C29&mn=sn-cvh76nle%2Csn-cvh7knsz&ms=au%2Crdu&mv=m&mvi=3&pl=20&rms=au%2Cau&initcwndbps=402500&bui=AY1jyLNR_RPBLZBfpCRZNzmW6SfonJ1tJ6LaH0XTes3yoABKQu8ZvzEC556YAKBWH7PCLo7E5gWRWYhg&vprv=1&svpuc=1&mime=audio%2Fwebm&ns=_GWNta7OG6guSGlVBI43NnkQ&rqh=1&gir=yes&clen=4436825&dur=245.041&lmt=1749523652892743&mt=1750508721&fvip=5&keepalive=yes&lmw=1&fexp=51466643%2C51466697&c=TVHTML5&sefc=1&txp=5532534&n=5prYueoXgy5yaA&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cxpc%2Cbui%2Cvprv%2Csvpuc%2Cmime%2Cns%2Crqh%2Cgir%2Cclen%2Cdur%2Clmt&sig=AJfQdSswRQIhAJBtZOS2I9pSS9xInxTrGiVGR5z1uOch4DndOOvIAqW4AiBePpjBMJgWldMJLBqGagvtj9KFaBaUGyOfv-TOK6Hasw%3D%3D&lsparams=met%2Cmh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Crms%2Cinitcwndbps&lsig=APaTxxMwRgIhALilx4aTSBOpODuMhNJ-UtVgn9Cx3d8DeNapRqiJjKOOAiEAlB0LpCCC0MOSNjPAGAMTWfFCx6uzvA1BNxtRGNcpzbg%3D"
-2025-06-21T18:03:32 playlist: Failed to load "This_Is_Alan_Walker/Sorry.mp3".
-2025-06-21T18:03:32 exception: Bad song index
+2025-08-28T00:53:03 update: added /Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3
+2025-08-28T01:05:31 exception: Failed to decode "https://youtu.be/JFcgOboQZ08?si=lrHZH4EzlFdLU_5R"; avformat_open_input() failed: Invalid data found when processing input
+2025-08-28T01:05:31 player: played "https://youtu.be/JFcgOboQZ08?si=lrHZH4EzlFdLU_5R"
+2025-08-28T01:05:31 exception: Failed to decode "https://youtu.be/JFcgOboQZ08?si=lrHZH4EzlFdLU_5R"; avformat_open_input() failed: Invalid data found when processing input
+2025-08-28T01:07:29 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-08-28T01:09:16 pipewire_output: Decoder is too slow; playing silence to avoid xrun
+2025-08-28T01:09:55 pipewire_output: Decoder is too slow; playing silence to avoid xrun
+2025-08-28T01:10:02 pipewire_output: Decoder is too slow; playing silence to avoid xrun
+2025-08-28T01:10:29 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-08-28T01:10:32 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-08-28T01:12:13 pipewire_output: Decoder is too slow; playing silence to avoid xrun
+2025-08-28T01:16:04 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-08-28T01:16:09 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-08-28T10:19:03 zeroconf: No global port, disabling zeroconf
+2025-08-29T08:36:01 zeroconf: No global port, disabling zeroconf
+2025-08-30T09:45:18 zeroconf: No global port, disabling zeroconf
+2025-08-31T10:31:31 zeroconf: No global port, disabling zeroconf
+2025-09-01T11:21:50 zeroconf: No global port, disabling zeroconf
+2025-09-02T09:26:48 zeroconf: No global port, disabling zeroconf
+2025-09-03T11:36:22 zeroconf: No global port, disabling zeroconf
+2025-09-04T09:41:48 zeroconf: No global port, disabling zeroconf
+2025-09-04T10:15:11 zeroconf: No global port, disabling zeroconf
+2025-09-05T03:42:27 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-05T11:15:29 zeroconf: No global port, disabling zeroconf
+2025-09-05T22:09:09 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-07T09:55:27 zeroconf: No global port, disabling zeroconf
+2025-09-07T17:56:55 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-08T10:34:38 zeroconf: No global port, disabling zeroconf
+2025-09-08T19:48:12 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-08T21:15:49 zeroconf: No global port, disabling zeroconf
+2025-09-08T22:05:31 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-09T11:19:52 zeroconf: No global port, disabling zeroconf
+2025-09-09T23:36:43 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-10T10:14:22 zeroconf: No global port, disabling zeroconf
+2025-09-10T18:41:59 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-10T20:43:27 zeroconf: No global port, disabling zeroconf
+2025-09-10T21:27:02 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-10T21:58:40 zeroconf: No global port, disabling zeroconf
+2025-09-10T23:56:21 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-11T10:47:02 zeroconf: No global port, disabling zeroconf
+2025-09-11T19:51:55 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-12T09:00:10 zeroconf: No global port, disabling zeroconf
+2025-09-12T23:02:45 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-13T09:46:16 zeroconf: No global port, disabling zeroconf
+2025-09-13T23:06:52 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-14T11:31:32 zeroconf: No global port, disabling zeroconf
+2025-09-14T22:23:20 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-15T09:56:26 zeroconf: No global port, disabling zeroconf
+2025-09-15T12:27:36 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-15T12:38:01 zeroconf: No global port, disabling zeroconf
+2025-09-15T16:35:55 zeroconf: No global port, disabling zeroconf
+2025-09-15T23:03:36 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-16T10:41:51 zeroconf: No global port, disabling zeroconf
+2025-09-16T22:39:17 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-17T09:59:39 zeroconf: No global port, disabling zeroconf
+2025-09-17T22:42:07 player: played "Janji - Heroes Tonight (feat. Johnning) [NCS Release].mp3"
+2025-09-18T08:31:01 zeroconf: No global port, disabling zeroconf

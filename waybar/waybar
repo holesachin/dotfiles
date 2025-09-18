@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WAYBAR_THEME="default"
+WAYBAR_THEME="minimal"
 
 WAYBAR_CONFIG="${HOME}/.config/waybar/${WAYBAR_THEME}/config"
 WAYBAR_STYLE="${HOME}/.config/waybar/${WAYBAR_THEME}/style.css"

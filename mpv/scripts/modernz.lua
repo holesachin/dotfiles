@@ -103,7 +103,7 @@ local user_opts = {
                                            -- https://mpv.io/manual/master/#command-interface-screenshot-%3Cflags%3E
 
     download_button = true,                -- show download button on web videos (requires yt-dlp and ffmpeg)
-    download_path = "~~desktop/mpv",       -- default download directory for videos (https://mpv.io/manual/master/#paths)
+    download_path = "~~desktop/videos/mpv",       -- default download directory for videos (https://mpv.io/manual/master/#paths)
 
     loop_button = false,                   -- show loop button
     speed_button = false,                  -- show speed control button

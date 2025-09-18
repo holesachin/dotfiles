@@ -42,12 +42,17 @@ return { -- Collection of various small independent plugins/modules
     -- Mini Session
     -- https://github.com/echasnovski/mini.sessions?tab=readme-ov-file#default-config
     require("mini.sessions").setup({
-      autoread = true,
+      -- autoread = true,
       autowrite = true,
       file = '', -- don't create Session.vim in cwd
       directory = vim.fn.stdpath('data') .. '/sessions', -- Custom session directory
       verbose = { read = true, write = true }, -- Show messages when writing
     })
+
+    vim.keymap.set('n', '<Leader>ws', function()
+      local session_name = vim.fn.getcwd():gsub('/', '-')
+      MiniSessions.write(session_name)
+    end)
 
     -- Mini Hipatterns
     require('mini.hipatterns').setup({
@@ -66,16 +71,16 @@ return { -- Collection of various small independent plugins/modules
     -- Mini Starter
     require("mini.starter").setup({
       header = [[
-                                                    
-             ████ ██████           █████      ██
-            ███████████             █████ 
-            █████████ ███████████████████ ███   ███████████
-           █████████  ███    █████████████ █████ ██████████████
-          █████████ ██████████ █████████ █████ █████ ████ █████
-        ███████████ ███    ███ █████████ █████ █████ ████ █████
-       ██████  █████████████████████ ████ █████ █████ ████ ██████
+                                                
+         ████ ██████           █████      ██
+        ███████████             █████ 
+        █████████ ███████████████████ ███   ███████████
+       █████████  ███    █████████████ █████ ██████████████
+      █████████ ██████████ █████████ █████ █████ ████ █████
+    ███████████ ███    ███ █████████ █████ █████ ████ █████
+   ██████  █████████████████████ ████ █████ █████ ████ ██████
 
-                                      !! 󰥳  !!
+                                  !! 󰥳  !!
       ]]
     })
   end,
