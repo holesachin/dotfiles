@@ -1,7 +1,11 @@
 vim.lsp.enable({
   "gopls",
-  "lua_ls",
-  "ts_ls",
+  "lua-ls",
+  "ts-ls",
+  'tailwindcss',
+  'html-ls',
+  'css-ls',
+  'rust-analyzer',
 })
 
 vim.diagnostic.config({

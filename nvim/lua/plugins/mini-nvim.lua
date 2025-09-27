@@ -43,7 +43,7 @@ return { -- Collection of various small independent plugins/modules
     -- https://github.com/echasnovski/mini.sessions?tab=readme-ov-file#default-config
     require("mini.sessions").setup({
       -- autoread = true,
-      autowrite = true,
+      -- autowrite = true,
       file = '', -- don't create Session.vim in cwd
       directory = vim.fn.stdpath('data') .. '/sessions', -- Custom session directory
       verbose = { read = true, write = true }, -- Show messages when writing
