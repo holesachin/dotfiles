@@ -57,7 +57,7 @@ vim.opt.timeoutlen = 300
 -- Tabs & Indentation
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+-- vim.opt.expandtab = true
 vim.opt.autoindent = true
 
 -- Configure how new splits should be opened
