@@ -36,8 +36,12 @@ fi
 # [ -f "${HOME}/.config/shell/aliases" ] && source "${HOME}/.config/shell/aliases"
 
 # general alias
+alias hmup='home-manager switch --flake ~/nxc\#sachin'
+alias nixup='sudo nixos-rebuild switch --impure --flake ~/nxc\#nixos'
+alias nxc='nvim --cmd "cd ~/nxc"'
 alias vim='nvim'
 alias vi='nvim'
+alias arch='distrobox enter arch'
 
 # zap alias
 alias zapw='echo https://zapzsh.org'
@@ -92,6 +96,3 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-
-# Load Angular CLI autocompletion.
-# source <(ng completion script)

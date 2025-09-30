@@ -1,6 +1,5 @@
 import dracula.draw
 
-# Change the argument to True to still load settings configured via autoconfig.yml
 config.load_autoconfig(False)
 
 dracula.draw.blood(c, {
@@ -33,6 +32,7 @@ config.set('content.local_content_can_access_remote_urls', True, 'file:///home/s
 config.set('content.local_content_can_access_file_urls', False, 'file:///home/sachin/.local/share/qutebrowser/userscripts/*')
 
 c.content.plugins = True
+c.content.blocking.enabled = True;
 c.completion.shrink = False
 
 c.statusbar.show = 'never'

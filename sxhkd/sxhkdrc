@@ -2,6 +2,8 @@
 #
 #
 
+source ~/.config/bspwm/keymaps
+
 # global key bindings  = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =  
 
 # Terminal tmux (kitty)

@@ -1,21 +1,19 @@
 #!/usr/bin/env bash
 
 # autostart = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-pgrep -x sxhkd >/dev/null || sxhkd -c "$HOME"/.config/sxhkd/sxhkdrc "$HOME"/.config/bspwm/keymaps &
+pgrep -x sxhkd >/dev/null || sxhkd -c "$HOME"/.config/bspwm/keymaps "$HOME"/.config/sxhkd/sxhkdrc &
 # pgrep bspswallow || bspswallow &
-pgrep kdeconnect-indicator || kdeconnect-indicator &
-pgrep lxpolkit || lxpolkit &
-pgrep dunst || dunst &
+# pgrep lxpolkit || lxpolkit &
+# pgrep dunst || dunst &
 pgrep polybar || polybar -r &
 pgrep nm-applet || nm-applet &
-pgrep blueman-applet || blueman-applet &
+# pgrep blueman-applet || blueman-applet &
 # pgrep picom || picom &
-# pgrep ulauncher || ulauncher &
 
 # monitor configuration = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 # assign workspaces 
-if [[ $(xrandr | grep "HDMI-1-0 connected") ]]; then
-    xrandr --output eDP-1 --primary --mode 1920x1080 --rotate normal --output HDMI-1-0 --mode 1920x1080 --rotate normal --top-of eDP-1
+if [[ $(xrandr | grep "HDMI-A-1 connected") ]]; then
+    xrandr --output eDP --primary --mode 1920x1080 --rotate normal --output HDMI-1-0 --mode 1920x1080 --rotate normal --top-of eDP
     bspc wm -O HDMI-1-0 eDP-1
     bspc monitor HDMI-1-0 -d 2 
     bspc monitor eDP-1 -d  1 3 4 5
@@ -25,7 +23,7 @@ else
     feh --no-fehbg --bg-scale ${HOME}/.config/bg.png
 fi
 
-monitor = ${env:MONITOR:eDP-1}
+monitor = ${env:MONITOR:eDP}
 
 # bspwm configuration = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 bspc config border_width 5

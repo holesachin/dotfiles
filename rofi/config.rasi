@@ -74,8 +74,8 @@ configuration {
 	/*---------- Display setting ----------*/
 	display-window: "Windows";
 	display-windowcd: "Window CD";
-	display-run: "Run";
-	display-ssh: "SSH";
+	// display-run: "Run";
+	// display-ssh: "SSH";
 	display-drun: "Apps";
 	display-combi: "Combi";
 	display-keys: "Keys";
@@ -182,4 +182,4 @@ configuration {
 
 //@theme "/usr/share/rofi/themes/sidebar.rasi"
 
-@theme "/usr/share/rofi/themes/DarkBlue.rasi"
+// @theme "/usr/share/rofi/themes/DarkBlue.rasi"
