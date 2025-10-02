@@ -1,6 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 #include "movestack.c"
+#include "selfrestart.c"
 #include "themes/onedark.h"
 
 /* appearance */
@@ -15,7 +16,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 3;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 14;        /* vertical padding for statusbar */
-static const char *fonts[]          = { "JetBrains Mono:style:medium:size=9" ,"ShureTechMono Nerd Font Mono:style:medium:size=19" };
+static const char *fonts[]          = { "JetBrains Mono:style:medium:size=9" ,"ShureTechMono Nerd Font Mono:style:medium:size=18" };
 static const char dmenufont[]       = "monospace:size=10";
 static const char *colors[][3]      = {
 	/*                   fg           bg         border   */
@@ -47,7 +48,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.60; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -113,6 +114,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_c,      quit,           {0} },
+  { MODKEY|ShiftMask,             XK_r,      self_restart,   {0} },
 };
 
 /* button definitions */
