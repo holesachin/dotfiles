@@ -36,12 +36,18 @@ fi
 # [ -f "${HOME}/.config/shell/aliases" ] && source "${HOME}/.config/shell/aliases"
 
 # general alias
+
 alias hmup='home-manager switch --flake ~/nxc\#sachin'
 alias nixup='sudo nixos-rebuild switch --impure --flake ~/nxc\#nixos'
-alias nxc='nvim --cmd "cd ~/nxc"'
+
+alias nxc='nvim --cmd "cd ~/nxc" ~/nxc/configuration.nix'
+alias dwc='nvim --cmd "cd ~/dotfiles/chadwm" ~/dotfiles/chadwm/config.def.h'
+
 alias vim='nvim'
 alias vi='nvim'
-alias arch='distrobox enter arch'
+
+alias ubuntu='distrobox enter ubuntu'
+alias tmux="tmux -u attach -t ${HOST} || tmux -u new -s ${HOST}"
 
 # zap alias
 alias zapw='echo https://zapzsh.org'
