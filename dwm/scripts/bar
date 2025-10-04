@@ -1,4 +1,4 @@
-#!/bin/dash
+#!/bin/bash
 
 # ^c$var^ = fg color
 # ^b$var^ = bg color
@@ -38,7 +38,7 @@ brightness() {
 	max=$(cat /sys/class/backlight/*/max_brightness)
 	curr=$(cat /sys/class/backlight/*/brightness)
 	printf "^c$red^   "
-	printf "^c$red^%.0f\n" $(( curr * 100 / max ))%
+	printf "^c$red^\n" $(( curr * 100 / max ))%
 }
 
 mem() {
@@ -63,5 +63,5 @@ while true; do
 	[ $interval = 0 ] || [ $(($interval % 3600)) = 0 ] && updates=$(pkg_updates)
 	interval=$((interval + 1))
 
-	sleep 1 && xsetroot -name "$(brightness) $(mem) $(cpu) $(battery) $(wlan) $(clock)"
+	sleep 1 && dwm -s " $(date +"%d/%m %I:%M %p") "
 done
