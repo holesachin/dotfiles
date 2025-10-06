@@ -75,3 +75,29 @@
 2025-09-26T08:56:16 zeroconf: No global port, disabling zeroconf
 2025-09-26T10:41:39 zeroconf: No global port, disabling zeroconf
 2025-09-27T10:32:15 zeroconf: No global port, disabling zeroconf
+2025-10-04T17:03:02 exception: Failed to access /home/sachin/music: No such file or directory
+2025-10-04T17:03:02 exception: inotify_add_watch("/home/sachin/music") failed: No such file or directory
+2025-10-04T21:13:13 exception: Failed to decode "https://www.youtube.com/live/Iap223l97fU?si=aTThbSEzFw4yJ-LE"; avformat_open_input() failed: Invalid data found when processing input
+2025-10-04T21:13:13 player: played "https://www.youtube.com/live/Iap223l97fU?si=aTThbSEzFw4yJ-LE"
+2025-10-04T21:13:23 exception: Failed to access /home/sachin/music: No such file or directory
+2025-10-04T21:13:39 exception: Failed to decode "https://www.youtube.com/live/Iap223l97fU?si=aTThbSEzFw4yJ-LE"; avformat_open_input() failed: Invalid data found when processing input
+2025-10-04T21:13:39 player: played "https://www.youtube.com/live/Iap223l97fU?si=aTThbSEzFw4yJ-LE"
+2025-10-04T21:14:00 exception: Failed to open /home/sachin/.config/mpd/playlists: No such file or directory
+2025-10-04T21:14:04 exception: Failed to open /home/sachin/.config/mpd/playlists: No such file or directory
+2025-10-04T21:14:04 exception: Failed to open /home/sachin/.config/mpd/playlists: No such file or directory
+2025-10-04T21:14:04 exception: Failed to open /home/sachin/.config/mpd/playlists: No such file or directory
+2025-10-04T21:14:04 exception: Failed to open /home/sachin/.config/mpd/playlists: No such file or directory
+2025-10-04T21:14:05 exception: Failed to open /home/sachin/.config/mpd/playlists: No such file or directory
+2025-10-04T21:14:05 exception: Failed to open /home/sachin/.config/mpd/playlists: No such file or directory
+2025-10-04T21:22:36 exception: Failed to decode "https://www.youtube.com/live/Iap223l97fU?si=aTThbSEzFw4yJ-LE"; avformat_open_input() failed: Invalid data found when processing input
+2025-10-04T21:22:36 player: played "https://www.youtube.com/live/Iap223l97fU?si=aTThbSEzFw4yJ-LE"
+2025-10-04T22:47:09 exception: inotify_add_watch("/home/sachin/music") failed: No such file or directory
+2025-10-05T01:17:03 exception: inotify_add_watch("/home/sachin/music") failed: No such file or directory
+2025-10-05T09:32:48 exception: inotify_add_watch("/home/sachin/music") failed: No such file or directory
+2025-10-05T11:34:11 exception: inotify_add_watch("/home/sachin/music") failed: No such file or directory
+2025-10-05T11:38:24 exception: inotify_add_watch("/home/sachin/music") failed: No such file or directory
+2025-10-05T12:40:03 exception: inotify_add_watch("/home/sachin/music") failed: No such file or directory
+2025-10-05T15:33:39 exception: inotify_add_watch("/home/sachin/music") failed: No such file or directory
+2025-10-05T22:18:05 exception: Failed to decode "https://www.youtube.com/live/Iap223l97fU?si=aTThbSEzFw4yJ-LE"; avformat_open_input() failed: Invalid data found when processing input
+2025-10-05T22:18:05 player: played "https://www.youtube.com/live/Iap223l97fU?si=aTThbSEzFw4yJ-LE"
+2025-10-06T10:25:31 exception: inotify_add_watch("/home/sachin/music") failed: No such file or directory
