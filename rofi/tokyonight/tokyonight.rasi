@@ -8,7 +8,7 @@
  */
 
 configuration {
-  font: "ShureTech Mono Nerd Font 10";
+  font: "Cascadia Code 10";
 
   drun {
     display-name: "";

@@ -8,7 +8,7 @@
  */
 
 configuration {
-  font: "ShureTech Mono Nerd Font 10";
+  font: "JetBrainsMono Nerd Font Medium 10";
 
   drun {
     display-name: "";
@@ -34,10 +34,10 @@ configuration {
   padding: 0;
   spacing: 0;
 
-  bg: #1a1b26;
-  bg-alt: #232433;
-  fg: #6a6f87;
-  fg-alt: #a9b1d6;
+  bg: #2E3440;
+  bg-alt: #3B4252;
+  fg: #81A1C1;
+  fg-alt: #EBCB8B;
 
   background-color: @bg;
   text-color: @fg;
@@ -45,7 +45,6 @@ configuration {
 
 window {
   transparency: "real";
-  width: 700px;
 }
 
 mainbox {
@@ -77,7 +76,6 @@ element {
 
 element-icon {
   padding: 10px 10px;
-  size: 20px;
 }
 
 element-text {

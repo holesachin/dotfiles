@@ -8,7 +8,7 @@
  */
 
 configuration {
-  font: "ShureTech Mono Nerd Font 10";
+  font: "JetBrainsMono Nerd Font Medium 10";
 
   drun {
     display-name: "";
@@ -34,10 +34,10 @@ configuration {
   padding: 0;
   spacing: 0;
 
-  bg: #1a1b26;
-  bg-alt: #232433;
-  fg: #6a6f87;
-  fg-alt: #a9b1d6;
+  bg: #151515;
+  bg-alt: #232323;
+  fg: #FFFFFF;
+  fg-alt: #424242;
 
   background-color: @bg;
   text-color: @fg;
@@ -45,7 +45,6 @@ configuration {
 
 window {
   transparency: "real";
-  width: 700px;
 }
 
 mainbox {
@@ -77,13 +76,13 @@ element {
 
 element-icon {
   padding: 10px 10px;
-  size: 20px;
 }
 
 element-text {
   padding: 10px 0;
+  text-color: @fg-alt;
 }
 
 element-text selected {
-  text-color: @fg-alt;
+  text-color: @fg;
 }

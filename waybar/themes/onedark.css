@@ -1,0 +1,13 @@
+@define-color background-darker rgba(30, 31, 41, 230); /* darker panel background */
+@define-color background #1E1F29;                       /* main panel background */
+@define-color selection #BD93F9;                        /* selected / hovered workspace */
+@define-color foreground #FFFFFF;                       /* main text */
+@define-color comment #5C6370;                          /* inactive / secondary text */
+@define-color cyan #56B6C2;                             /* network / minor highlights */
+@define-color green #98C379;                            /* good status (battery full) */
+@define-color orange #D19A66;                           /* warnings */
+@define-color pink #FF79C6;                             /* notifications / accents */
+@define-color purple #C678DD;                           /* active workspace/module */
+@define-color red #FF5555;                               /* urgent notifications / errors */
+@define-color yellow #E5C07B;                           /* subtle highlights / info */
+
