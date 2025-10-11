@@ -95,22 +95,22 @@ vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
 
 -- Set retrobox colorscheme
--- vim.cmd("colorscheme retrobox")
+vim.cmd("colorscheme retrobox")
 vim.g.retrobox_contrast = "high"
 
 -- Set background color
 vim.opt.background = "dark" -- "light" for light themes
 
 -- Transparent background for Neovim UI elements
--- vim.cmd("hi Normal guibg=NONE ctermbg=NONE")     -- Transparent background for normal text
--- vim.cmd("hi StatusLine guibg=NONE ctermbg=NONE") -- Transparent status line
--- vim.cmd("hi VertSplit guibg=NONE ctermbg=NONE")  -- Transparent vertical split lines
--- vim.cmd("hi TabLine guibg=NONE ctermbg=NONE")    -- Transparent tab line
--- vim.cmd("hi LineNr guibg=NONE ctermbg=NONE")     -- Transparent line numbers
--- vim.cmd("hi SignColumn guibg=NONE ctermbg=NONE") -- Transparent sign column (for diagnostics)
--- vim.cmd("hi Pmenu guibg=NONE ctermbg=NONE")      -- Transparent popup menu (e.g., completion)
+vim.cmd("hi Normal guibg=NONE ctermbg=NONE")     -- Transparent background for normal text
+vim.cmd("hi StatusLine guibg=NONE ctermbg=NONE") -- Transparent status line
+vim.cmd("hi VertSplit guibg=NONE ctermbg=NONE")  -- Transparent vertical split lines
+vim.cmd("hi TabLine guibg=NONE ctermbg=NONE")    -- Transparent tab line
+vim.cmd("hi LineNr guibg=NONE ctermbg=NONE")     -- Transparent line numbers
+vim.cmd("hi SignColumn guibg=NONE ctermbg=NONE") -- Transparent sign column (for diagnostics)
+vim.cmd("hi Pmenu guibg=NONE ctermbg=NONE")      -- Transparent popup menu (e.g., completion)
 -- vim.cmd("hi CursorLine guibg=NONE ctermbg=NONE") -- Transparent cursor line
--- vim.cmd("hi Search guibg=NONE ctermbg=NONE")     -- Transparent search highlights
+vim.cmd("hi Search guibg=NONE ctermbg=NONE")     -- Transparent search highlights
 
 -- Neovide Options
 if vim.g.neovide then 
