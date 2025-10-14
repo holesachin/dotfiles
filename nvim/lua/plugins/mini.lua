@@ -23,19 +23,27 @@ return {
 			require("mini.surround").setup()
 		end,
 	},
+	
+	-- mini.diff
+	{
+		"nvim-mini/mini.diff",
+		event = "VeryLazy",
+		config = function()
+			require("mini.diff").setup()
+		end,
+	},
 
 	-- mini.statusline
 	{
 		"nvim-mini/mini.statusline",
 		config = function()
-
-			vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
-			vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
-
 			require("mini.statusline").setup({
 				use_icons = vim.g.have_nerd_font,
-
+				set_vim_settings = false,
 			})
+			vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
+			vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
+			vim.api.nvim_set_hl(0, "MiniStatuslineFilename", { bg = "NONE" })
 		end,
 	},
 
@@ -52,6 +60,18 @@ return {
 		"nvim-mini/mini.pairs",
 		config = function()
 			require("mini.pairs").setup()
+		end,
+	},
+
+	-- mini.indentscope (bracket connector lines)
+	{
+		"nvim-mini/mini.indentscope",
+		config = function()
+			require("mini.indentscope").setup({
+				symbol = "| ",
+				options = { try_as_border = true },
+			})
+			-- vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "magenta" })
 		end,
 	},
 

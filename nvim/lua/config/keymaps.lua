@@ -33,3 +33,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Toggle between the two most recent buffers
 vim.api.nvim_set_keymap('n', '<leader>b', '<C-^>', { noremap = true, silent = true })
+
+-- Toggle UndoTree
+vim.keymap.set('n', '<leader>u', '<cmd>UndotreeToggle<CR>', { desc = "Toggle UndoTree" })

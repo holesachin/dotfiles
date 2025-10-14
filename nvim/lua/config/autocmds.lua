@@ -60,7 +60,8 @@ vim.api.nvim_create_user_command("LspStop", function(opts)
 			vim.notify(client.name .. ": stopped")
 		end
 	end
-end, {
+end, 
+	{
 		desc = "Stop all LSP clients or a specific client attached to the current buffer.",
 		nargs = "?",
 		complete = function(_, _, _)
@@ -72,24 +73,3 @@ end, {
 			return client_names
 		end,
 	})
-
--- hide tmux status when vim opens
--- if vim.fn.has('unix') == 1 and vim.fn.getenv('TMUX') then
---   -- Create an augroup
---   local group = vim.api.nvim_create_augroup('tmux_something', {})
---
---   -- Define the autocommands
---   vim.api.nvim_create_autocmd({ 'VimResume', 'VimEnter' }, {
---     group = group,
---     callback = function()
---       vim.fn.system('tmux set status off')
---     end,
---   })
---
---   vim.api.nvim_create_autocmd({ 'VimLeave', 'VimSuspend' }, {
---     group = group,
---     callback = function()
---       vim.fn.system('tmux set status on')
---     end,
---   })
--- end

@@ -5,8 +5,6 @@ vim.g.maplocalleader = " "
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
 
--- [[ Setting options ]]
-
 -- netrw
 vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 0
@@ -48,7 +46,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = "no"
+vim.opt.signcolumn = "yes"
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -77,7 +75,7 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 20
 
 -- Auto Session
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
@@ -95,11 +93,13 @@ vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
 
 -- Set retrobox colorscheme
-vim.cmd("colorscheme retrobox")
-vim.g.retrobox_contrast = "high"
+-- vim.cmd("colorscheme retrobox")
+-- vim.g.retrobox_contrast = "high"
 
 -- Set background color
 vim.opt.background = "dark" -- "light" for light themes
+
+vim.o.termguicolors = true
 
 -- Transparent background for Neovim UI elements
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")     -- Transparent background for normal text

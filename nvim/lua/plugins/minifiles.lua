@@ -77,13 +77,13 @@ return {
 			}),
 
 			-- Customize highlights for transparency
-			-- vim.api.nvim_set_hl(0, 'Minifiles', { bg = 'none' }),
-			-- vim.api.nvim_set_hl(0, 'MiniFilesNormal', { bg = 'NONE', fg = '#dbceba' }),       -- Adjust fg color as needed
-			-- vim.api.nvim_set_hl(0, 'MiniFilesBorder', { bg = 'NONE', fg = '#57544d' }),       -- For borders, if applicable
-			-- vim.api.nvim_set_hl(0, 'MiniFilesDirectory', { bg = 'NONE', fg = '#87D7FF' }),    -- Directory names
-			-- vim.api.nvim_set_hl(0, 'MinifilesTitle', { bg = 'none' }),                        -- Ensures Minifiles title bar is transparen
-			-- vim.api.nvim_set_hl(0, 'MinifilesTitleFocused', { bg = 'none', fg = "#D99FF7" }), -- Ensures focused title bar is transparent
-			-- vim.api.nvim_set_hl(0, 'MinifilesStatus', { bg = 'none' }),                       -- Ensures status line is transparent
+			vim.api.nvim_set_hl(0, 'Minifiles', { bg = 'none' }),
+			vim.api.nvim_set_hl(0, 'MiniFilesNormal', { bg = 'NONE', fg = '#dbceba' }),       -- Adjust fg color as needed
+			vim.api.nvim_set_hl(0, 'MiniFilesBorder', { bg = 'NONE', fg = '#57544d' }),       -- For borders, if applicable
+			vim.api.nvim_set_hl(0, 'MiniFilesDirectory', { bg = 'NONE', fg = '#87D7FF' }),    -- Directory names
+			vim.api.nvim_set_hl(0, 'MinifilesTitle', { bg = 'none' }),                        -- Ensures Minifiles title bar is transparen
+			vim.api.nvim_set_hl(0, 'MinifilesTitleFocused', { bg = 'none', fg = "#D99FF7" }), -- Ensures focused title bar is transparent
+			vim.api.nvim_set_hl(0, 'MinifilesStatus', { bg = 'none' }),                       -- Ensures status line is transparent
 		})
 	end
 }

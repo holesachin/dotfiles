@@ -1,6 +1,6 @@
 [general]
 import = [
-  "/home/sachin/.config/alacritty/themes/one_dark.toml",
+  "/home/sachin/.config/alacritty/themes/tokyo-night.toml",
   "/home/sachin/.config/alacritty/fonts.toml"
 ]
 live_config_reload = true
@@ -19,7 +19,7 @@ WINIT_X11_SCALE_FACTOR = "1.0"
 [window]
 decorations = "full"
 dynamic_title = true
-opacity = 0.97
+opacity = 0.70
 startup_mode = "Windowed"
 
 [window.dimensions]
