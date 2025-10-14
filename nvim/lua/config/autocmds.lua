@@ -48,28 +48,28 @@ vim.api.nvim_create_autocmd('FileType', {
 	end
 })
 
--- Start, Stop, Restart, Log commands {{{
-vim.api.nvim_create_user_command("LspStart", function()
-	vim.cmd.e()
-end, { desc = "Starts LSP clients in the current buffer" })
-
-vim.api.nvim_create_user_command("LspStop", function(opts)
-	for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
-		if opts.args == "" or opts.args == client.name then
-			client:stop(true)
-			vim.notify(client.name .. ": stopped")
-		end
-	end
-end, 
-	{
-		desc = "Stop all LSP clients or a specific client attached to the current buffer.",
-		nargs = "?",
-		complete = function(_, _, _)
-			local clients = vim.lsp.get_clients({ bufnr = 0 })
-			local client_names = {}
-			for _, client in ipairs(clients) do
-				table.insert(client_names, client.name)
-			end
-			return client_names
-		end,
-	})
+-- -- Start, Stop, Restart, Log commands {{{
+-- vim.api.nvim_create_user_command("LspStart", function()
+-- 	vim.cmd.e()
+-- end, { desc = "Starts LSP clients in the current buffer" })
+--
+-- vim.api.nvim_create_user_command("LspStop", function(opts)
+-- 	for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+-- 		if opts.args == "" or opts.args == client.name then
+-- 			client:stop(true)
+-- 			vim.notify(client.name .. ": stopped")
+-- 		end
+-- 	end
+-- end, 
+-- 	{
+-- 		desc = "Stop all LSP clients or a specific client attached to the current buffer.",
+-- 		nargs = "?",
+-- 		complete = function(_, _, _)
+-- 			local clients = vim.lsp.get_clients({ bufnr = 0 })
+-- 			local client_names = {}
+-- 			for _, client in ipairs(clients) do
+-- 				table.insert(client_names, client.name)
+-- 			end
+-- 			return client_names
+-- 		end,
+-- 	})
