@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#
+# hyprlauncher - Open or switch to an app on a specific workspace
+#
+# Usage: hyprlauncher APP_NAME WORKSPACE [LAUNCH_COMMAND] [WINDOW_CLASS]
+#
+# Examples:
+#   hyprlauncher alacritty 1 "alacritty -e tmux" "alacritty"
+#   hyprlauncher firefox 2
+#   hyprlauncher spotify 3 "spotify" "Spotify"
+#
+
+APP_NAME="$1"
+WORKSPACE="${2:-1}"
+LAUNCH_COMMAND="${3:-$APP_NAME}"
+WINDOW_CLASS="${4:-$APP_NAME}"
+
+# Validate arguments
+if [[ -z ${APP_NAME} ]]; then
+	echo "Usage: $(basename $0) APP_NAME WORKSPACE [LAUNCH_COMMAND] [WINDOW_CLASS]" >&2
+	echo "" >&2
+	echo "Examples:" >&2
+	echo "  $(basename $0) alacritty 1" >&2
+	echo "  $(basename $0) firefox 2" >&2
+	echo "  $(basename $0) code 3 'code --new-window'" >&2
+	exit 1
+fi
+
+# Check if window with this class already exists (more reliable than pgrep)
+if hyprctl clients -j | grep "${WINDOW_CLASS}" > /dev/null 2>&1; then
+	hyprctl dispatch focuswindow "class:^(${WINDOW_CLASS})$"
+else
+	eval "${LAUNCH_COMMAND}" &
+	sleep 0.5
+	
+	# Move to workspace and focus
+	hyprctl dispatch movetoworkspacesilent "${WORKSPACE},class:^(${WINDOW_CLASS})\$"
+	hyprctl dispatch workspace ${WORKSPACE}
+fi
