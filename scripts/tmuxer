@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+#
+# tmux-sessionizer - Quickly create or switch to tmux sessions based on project directories
+#
+
+DIRS=(
+	~/
+	~/project
+	~/dotfiles
+	~/hobby
+	~/znox
+)
+
+# MENU="fzf --info inline --border=sharp --no-scrollbar --separator= "
+MENU="fzf --info inline --border=sharp --no-scrollbar --separator= "
+
+
+while true; do
+	# Find directories and let user select one with fzf
+	SELECTED_DIR="$(find ${DIRS[@]} -mindepth 1 -maxdepth 1 -type d ! -name '.*' | ${MENU})"
+	
+	# Exit if no directory was selected
+	if [[ -z ${SELECTED_DIR} ]]; then
+		exit 0
+	fi
+	
+	# Get the directory name to use as session name
+	SESSION_NAME="$(basename ${SELECTED_DIR} | tr . _)"
+	
+	# Check if we're inside tmux
+	if [[ -z ${TMUX} ]]; then
+		# Not in tmux - create new session or attach to existing one
+		if tmux has-session -t "${SESSION_NAME}" 2>/dev/null; then
+			tmux attach-session -t "${SESSION_NAME}"
+		else
+			tmux new-session -s "${SESSION_NAME}" -c "${SELECTED_DIR}"
+		fi
+		break # After attaching, the script will be in the background, so break the loop
+	else
+		# Inside tmux - create session if it doesn't exist, then switch to it
+		if ! tmux has-session -t "${SESSION_NAME}" 2>/dev/null; then
+			tmux new-session -ds "${SESSION_NAME}" -c "${SELECTED_DIR}"
+		fi
+		tmux switch-client -t "${SESSION_NAME}"
+		# Loop continues - fzf will show again after switching
+	fi
+done
