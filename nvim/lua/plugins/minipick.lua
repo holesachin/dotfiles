@@ -1,6 +1,9 @@
 return {
 	'nvim-mini/mini.pick',
-	dependencies = { 'nvim-mini/mini.extra' },
+	dependencies = { 
+		'nvim-mini/mini.extra',
+		'nvim-tree/nvim-web-devicons'
+	},
 
 	config = function()
 		-- Require modules properly

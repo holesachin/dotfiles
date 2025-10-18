@@ -1,14 +1,49 @@
 return {
+
+	-- UndoTree
 	{
 		'mbbill/undotree'
 	},
+
+	-- Merge Tmux -> Vim status bar
 	{
 		'vimpostor/vim-tpipeline',
 		enabled = false,
 	},
+
+	-- Just Lsp Server Configurations
 	{
 		"neovim/nvim-lspconfig",
 	},
+
+	-- Markdown
+	{
+		'MeanderingProgrammer/render-markdown.nvim',
+		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		opts = {},
+	},
+
+	-- Obsidian
+	{
+		"epwalsh/obsidian.nvim",
+		lazy = true,
+		ft = "marldown",
+		config = function() 
+			require('obsidian').setup({
+				ui = { enabled = false, },
+				workspaces = {
+					{
+						name = "znox",
+						path = "~/znox",
+					},
+				},
+			})
+		end
+	},
+
+	-- Navigating form vim to tmux panes
 	{
 		"christoomey/vim-tmux-navigator",
 		cmd = {
@@ -26,4 +61,5 @@ return {
 			{ "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
 		},
 	},
+
 }

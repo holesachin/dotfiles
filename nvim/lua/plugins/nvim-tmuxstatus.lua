@@ -11,8 +11,8 @@ return {
 					name = "buffers",
 					max_length = 80,
 					highlight_current = true,
-					highlight_format = "#[fg=yellow,bg=black,bold] %s #[default]",
-					format = " %s ",
+					highlight_format = "#[fg=yellow,bold]%s#[default]",
+					format = "%s",
 					seperator = " "
 				},
 				-- {

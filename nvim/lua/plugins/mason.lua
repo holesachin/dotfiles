@@ -14,7 +14,7 @@ return {
 			"html-lsp",                    -- HTML LSP
 			"css-lsp",                     -- CSS LSP
 			"hyprls",
-			"nil_ls",
+			"nil",
 
 			-- Formatters (for conform.nvim and general use)
 			"stylua",

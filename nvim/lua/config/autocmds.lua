@@ -12,6 +12,36 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 	command = 'silent source %'
 })
 
+-- Autosave
+local timer = vim.uv.new_timer()
+
+local function save()
+	vim.cmd "silent w"
+	vim.api.nvim_echo({ { "󰄳 saved " .. os.date "%I:%M %p", "LazyProgressDone" } }, false, {})
+	vim.defer_fn(function() vim.api.nvim_echo({}, false, {}) end, 800)
+end
+
+vim.api.nvim_create_autocmd("InsertLeave", {
+	pattern = { "*.lua" },
+	callback = function()
+		if vim.api.nvim_buf_get_name(0) ~= "" and vim.bo.buflisted then
+			timer:stop()
+			save()
+		end
+	end,
+})
+
+-- Autosave with debounce
+vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
+	pattern = { "*.ts", "*.tsx", "*.js", "*.jsx", "*.go", "*.html", "*.css", "*.json", "*.vue", "*.svelte" },
+	callback = function()
+		if vim.api.nvim_buf_get_name(0) ~= "" and vim.bo.buflisted then
+			timer:stop()
+			timer:start(300, 0, vim.schedule_wrap(save))
+		end
+	end,
+})
+
 -- Return to last edit position when opening files
 vim.api.nvim_create_autocmd("BufReadPost", {
 	group = augroup,
@@ -48,28 +78,3 @@ vim.api.nvim_create_autocmd('FileType', {
 	end
 })
 
--- -- Start, Stop, Restart, Log commands {{{
--- vim.api.nvim_create_user_command("LspStart", function()
--- 	vim.cmd.e()
--- end, { desc = "Starts LSP clients in the current buffer" })
---
--- vim.api.nvim_create_user_command("LspStop", function(opts)
--- 	for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
--- 		if opts.args == "" or opts.args == client.name then
--- 			client:stop(true)
--- 			vim.notify(client.name .. ": stopped")
--- 		end
--- 	end
--- end, 
--- 	{
--- 		desc = "Stop all LSP clients or a specific client attached to the current buffer.",
--- 		nargs = "?",
--- 		complete = function(_, _, _)
--- 			local clients = vim.lsp.get_clients({ bufnr = 0 })
--- 			local client_names = {}
--- 			for _, client in ipairs(clients) do
--- 				table.insert(client_names, client.name)
--- 			end
--- 			return client_names
--- 		end,
--- 	})

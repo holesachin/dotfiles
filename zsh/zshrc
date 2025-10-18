@@ -47,7 +47,7 @@ alias vim='nvim'
 alias vi='nvim'
 
 alias ubuntu='distrobox enter ubuntu'
-alias tmux="tmux -u attach -t ${HOST} || tmux -u new -s ${HOST}"
+alias t="tmux -u attach -t ${HOST} || tmux -u new -s ${HOST}"
 
 # zap alias
 alias zapw='echo https://zapzsh.org'
