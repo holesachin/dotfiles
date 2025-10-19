@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+#
+#
+
+QUERY=$(rofi -dmenu -theme ~/.config/rofi/zinput.rasi)
+
+function browser {
+	if [[ ! -z ${*} ]]; then 
+		qutebrowser "${*}" & disown ; sleep 0.1
+		# qutebrowser --basedir /tmp/qutebrowser --config-py ~/.config/qutebrowser/config.py "${QUERY}" & sleep 0.3
+		hyprctl dispatch focuswindow class:org.qutebrowser.qutebrowser
+		exit
+	fi
+}
+
+echo $QUERY
+
+function main {
+	case ${1} in
+		"o") shift ; browser :open ${*} ;;
+		"t") shift ; browser :open -t ${2} ;;
+		*) browser ${*} ;;
+	esac
+}
+
+main ${QUERY}

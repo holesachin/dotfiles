@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # mpc mpd yt-dlp 
 
@@ -9,8 +9,8 @@ voiceText="${HOME}/.cache/voiceText"
 VOSK_VOICE_MODEL="~/download/vosk-models/vosk-model-en-in-0.5"
 
 # base urls 
-#yturl="https://www.youtube.com"
-yturl="https://vid.puffyan.us"
+yturl="https://www.youtube.com"
+# yturl="https://vid.puffyan.us"
 
 userAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" 
 
@@ -45,12 +45,14 @@ fi
 url=$(curl -A ${userAgent} -s ${yturl}/search?q=${query} | grep -Eo "/watch\?v=.{11}" | head -n 1)
 
 # get audio link 
-audioUrl=$(yt-dlp -f bestaudio --get-url ${yturl}${url})
+# audioUrl=$(yt-dlp -f bestaudio --get-url ${yturl}${url})
 
 # get title 
-title=$(yt-dlp --get-title "${yturl}${url}")
+# title=$(yt-dlp --get-title "${yturl}${url}")
+
+mpv "${url}"
 
 # play song 
-mpc stop && mpc clear 
-mpc add ${audioUrl} && mpc play && notify-send "Ytmusic" "playing: ${title}" 
+# mpc stop && mpc clear 
+# mpc add ${audioUrl} && mpc play && notify-send "Ytmusic" "playing: ${title}" 
 

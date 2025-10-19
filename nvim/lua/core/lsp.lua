@@ -8,7 +8,6 @@ vim.lsp.enable({
 	'cssls',
 	'nil_ls',
 	'hyprls'
-	'hyprls',
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {

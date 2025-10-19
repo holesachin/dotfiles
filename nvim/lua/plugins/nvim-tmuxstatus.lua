@@ -3,6 +3,8 @@ return {
 	-- dir = "~/project/tmuxstatus.nvim",
 	config = function() 
 		require('tmuxstatus').setup({
+
+			hide_vim_statusbar = true,
 			update_events = { "BufEnter", "BufLeave", "WinEnter", "ModeChanged" },
 			update_interval = 100, -- ms debounce
 
@@ -11,19 +13,13 @@ return {
 					name = "buffers",
 					max_length = 80,
 					highlight_current = true,
-					highlight_format = "#[fg=yellow,bold]%s#[default]",
-					format = "%s",
+					highlight_format = "#[fg=green,bold]%s#[default]",
+					format = "[ %s ]",
 					seperator = " "
 				},
-				-- {
-				-- 	name = "line-count",
-				-- 	fn = function()
-				-- 		return tostring(vim.api.nvim_buf_line_count(0))
-				-- 	end,
-				-- 	format = "Lines: %s",
-				-- 	tmux_var = "lcount",
-				-- 	events = { "BufEnter", "TextChanged" },
-				-- },
+				{
+					name = "mode",
+				},
 			},
 		})
 	end
