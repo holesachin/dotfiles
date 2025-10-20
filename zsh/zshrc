@@ -1,9 +1,16 @@
-# zap   : https://github.com/zap-zsh/zap
-# site  : https://zapzsh.org
-# yt    : https://youtu.be/LhDMw6n3GI4?si=Jl0aOM3faxEHkE5p
-
 # path
 export PATH="${PATH}:${HOME}/go/bin:${HOME}/.local/scripts"
+export FZF_DEFAULT_OPTS="--info inline --no-scrollbar --color 'gutter:-1'"
+
+# zinit
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+# plugins
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # android studio
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -12,56 +19,11 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/opt/android-studio/bin
 export CAPACITOR_ANDROID_STUDIO_PATH=/opt/android-studio/bin/studio.sh 
 
-# startx
-# if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then 
-#   exec startx; 
-# fi
-
-# start tmux
-# if [[ -z "$TMUX" ]]; then
-#     tmux -u attach -t arch || tmux -u new -s arch
-# fi 
-
-# install zap
-if [[ ! -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ]]; then
-  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
-fi
-
-# load zap installer
-if [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ]; then  
-    source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
-fi
-
-# load aliases
-# [ -f "${HOME}/.config/shell/aliases" ] && source "${HOME}/.config/shell/aliases"
-
 # general alias
-
-alias hmup='home-manager switch --flake ~/nxc\#sachin'
 alias nixup='sudo nixos-rebuild switch --impure --flake ~/nxc\#nixos'
-
-alias nxc='nvim --cmd "cd ~/nxc" ~/nxc/configuration.nix'
-alias dwc='nvim --cmd "cd ~/dotfiles/chadwm" ~/dotfiles/chadwm/config.def.h'
-
 alias vim='nvim'
 alias vi='nvim'
-
-alias ubuntu='distrobox enter ubuntu'
 alias t="tmux -u attach -t ${HOST} || tmux -u new -s ${HOST}"
-
-# zap alias
-alias zapw='echo https://zapzsh.org'
-alias zapsrc='echo https://github.com/zap-zsh/zap'
-alias zaprc="vim ${HOME}/.zshrc"
-alias zshrc="vim ${HOME}/.zshrc"
-
-# plugins
-plug "zap-zsh/supercharge"
-# plug "zap-zsh/zap-prompt"
-plug "zap-zsh/sudo"
-plug "zsh-users/zsh-autosuggestions"
-plug "zsh-users/zsh-syntax-highlighting"
-plug "MichaelAquilina/zsh-you-should-use"
 
 # zsh promp
 # PS1="%F{green}%B%m%b%f %1~ - "
@@ -75,6 +37,13 @@ PS1="%F{blue}[%F{yellow} %1~ %F{blue}]%F{green} %f"
 # load and initialise completion system
 autoload -Uz compinit
 compinit
+
+# zinit
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# fzf
+source <(fzf --zsh)
 
 # set zsh key
 bindkey -v
