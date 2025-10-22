@@ -1,6 +1,7 @@
 {
 	"position": "top",
 	"output": "eDP-1",
+	"height": 34,
 
 	"modules-left":   [ "hyprland/workspaces", "hyprland/window" ],
 	// "modules-center": [ "custom/block" ],
