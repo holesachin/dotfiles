@@ -2,15 +2,15 @@
 size = 11
 
 [font.bold]
-family = "ShureTechMono Nerd Font"
+family = "ShureTechMono Nerd Font Propo"
 style = "Bold"
 
 [font.bold_italic]
-family = "ShureTechMono Nerd Font"
+family = "ShureTechMono Nerd Font Propo"
 style = "Bold Italic"
 
 [font.italic]
-family = "ShureTechMono Nerd Font"
+family = "ShureTechMono Nerd Font Propo"
 style = "Italic"
 
 [font.normal]
