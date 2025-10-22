@@ -11,6 +11,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 # plugins
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light MichaelAquilina/zsh-you-should-use
 
 # android studio
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -52,9 +53,9 @@ bindkey -v
 # eval "$(zoxide init zsh)"
 
 #
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # bun completions
 [ -s "/home/sachin/.bun/_bun" ] && source "/home/sachin/.bun/_bun"
