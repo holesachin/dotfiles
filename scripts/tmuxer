@@ -11,37 +11,44 @@ DIRS=(
 	~/znox
 )
 
-# MENU="fzf --info inline --border=sharp --no-scrollbar --separator= "
-MENU="fzf --info inline --border=sharp --no-scrollbar --separator= "
+MENU="fzf --no-scrollbar --tmux 100% --separator= \
+	--color=gutter:-1,bg+:-1,fg+:183,fg:60,pointer:183 \
+	--info inline " 
 
+# Icons
+_tmux_icon=" "
+_dir_icon="󰉖 "
+_file_icon=" "
 
-while true; do
-	# Find directories and let user select one with fzf
-	SELECTED_DIR="$(find ${DIRS[@]} -mindepth 1 -maxdepth 1 -type d ! -name '.*' | ${MENU})"
-	
-	# Exit if no directory was selected
-	if [[ -z ${SELECTED_DIR} ]]; then
-		exit 0
-	fi
-	
-	# Get the directory name to use as session name
-	SESSION_NAME="$(basename ${SELECTED_DIR} | tr . _)"
-	
-	# Check if we're inside tmux
-	if [[ -z ${TMUX} ]]; then
-		# Not in tmux - create new session or attach to existing one
-		if tmux has-session -t "${SESSION_NAME}" 2>/dev/null; then
-			tmux attach-session -t "${SESSION_NAME}"
-		else
-			tmux new-session -s "${SESSION_NAME}" -c "${SELECTED_DIR}"
-		fi
-		break # After attaching, the script will be in the background, so break the loop
+OPTIONS=$({ tmux ls 2>/dev/null | cut -d':' -f1 | sed "s/^/${_tmux_icon}/"; \
+	find "${DIRS[@]}" -mindepth 1 -maxdepth 1 -type d ! -name '.*' | sed "s/^/${_dir_icon}/" | sed "s/^\/home\/sachin\///"; \
+})
+
+# Find directories and let user select one with fzf
+SELECTED_DIR=$(echo "$OPTIONS" | ${MENU:-fzf} | cut -d' ' -f2)
+
+# Exit if no directory was selected
+if [[ -z ${SELECTED_DIR} ]]; then
+	exit 0
+fi
+
+# Get the directory name to use as session name
+SESSION_NAME="$(basename ${SELECTED_DIR} | tr . _)"
+
+# Check if we're inside tmux
+if [[ -z ${TMUX} ]]; then
+	# Not in tmux - create new session or attach to existing one
+	if tmux has-session -t "${SESSION_NAME}" 2>/dev/null; then
+		tmux attach-session -t "${SESSION_NAME}"
 	else
-		# Inside tmux - create session if it doesn't exist, then switch to it
-		if ! tmux has-session -t "${SESSION_NAME}" 2>/dev/null; then
-			tmux new-session -ds "${SESSION_NAME}" -c "${SELECTED_DIR}"
-		fi
-		tmux switch-client -t "${SESSION_NAME}"
-		# Loop continues - fzf will show again after switching
+		tmux new-session -s "${SESSION_NAME}" -c "${SELECTED_DIR}"
 	fi
-done
+else
+	# Inside tmux - create session if it doesn't exist, then switch to it
+	if ! tmux has-session -t "${SESSION_NAME}" 2>/dev/null; then
+		tmux new-session -ds "${SESSION_NAME}" -c "${SELECTED_DIR}"
+	fi
+	tmux switch-client -t "${SESSION_NAME}"
+	# Loop continues - fzf will show again after switching
+fi
+
