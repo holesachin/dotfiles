@@ -5,12 +5,6 @@ return {
 		'mbbill/undotree'
 	},
 
-	-- Merge Tmux -> Vim status bar
-	{
-		'vimpostor/vim-tpipeline',
-		enabled = false,
-	},
-
 	-- Just Lsp Server Configurations
 	{
 		"neovim/nvim-lspconfig",
@@ -23,24 +17,6 @@ return {
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {},
-	},
-
-	-- Obsidian
-	{
-		"epwalsh/obsidian.nvim",
-		lazy = true,
-		ft = "marldown",
-		config = function() 
-			require('obsidian').setup({
-				ui = { enabled = false, },
-				workspaces = {
-					{
-						name = "znox",
-						path = "~/znox",
-					},
-				},
-			})
-		end
 	},
 
 	-- Navigating form vim to tmux panes
