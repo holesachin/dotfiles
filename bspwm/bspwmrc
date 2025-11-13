@@ -2,18 +2,22 @@
 
 # autostart = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 pgrep -x sxhkd >/dev/null || sxhkd -c "$HOME"/.config/bspwm/keymaps "$HOME"/.config/sxhkd/sxhkdrc &
-pgrep polybar || polybar -r &
+pgrep -x polybar >/dev/null || polybar -r &
 
 # monitor & workspace configuration = = = = = = = = = = = = = = = = = = = = = = = = =
 
-if [ xrandr | grep -q "^HDMI-0 connected" ]; then
-	bspc monitor eDP-1-0 -d 1 2 3 5
-	bspc monitor HDMI-0 -d 4
-	feh --no-fehbg --bg-scale "${HOME}"/.config/bg.png "${HOME}"/.config/bg2.png &
+MONITOR01="eDP-1-0"
+MONITOR02="HDMI-0"
+
+if xrandr | grep -q "^$MONITOR02 connected"; then
+	bspc monitor $MONITOR01 -d 1 2
+	bspc monitor $MONITOR02 -d 3 4 5
+	feh --no-fehbg --bg-scale "${HOME}"/.config/bg.png "${HOME}"/.config/bg2.png
 else 
-	bspc monitor eDP-1-0 -d 1 2 3 4 5
+	bspc monitor $MONITOR01 -d 1 2 3 4 5
 	feh --no-fehbg --bg-scale ${HOME}/.config/bg.png
 fi
+
 
 # bspwm configuration = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 bspc config border_width 5
@@ -32,8 +36,8 @@ bspc config active_border_color     "$MAGENTA"
 bspc config presel_feedback_color   "$GREEN"
 
 # window rules = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = 
-bspc rule -a zen-beta desktop='^2' follow=on focus=on
-bspc rule -a ghostty desktop='^1' follow=on focus=on
+# bspc rule -a zen-beta desktop='^2' follow=on focus=on
+# bspc rule -a alacritty desktop='^1' follow=on focus=on
 bspc rule -a Portmaster state=floating manage=on focus=on
 bspc rule -a stalonetray state=floating manage=off
 bspc rule -a Conky state=floating manage=off
@@ -48,5 +52,4 @@ bspc rule -a scrcpy state=floating sticky=on  manage=on
 bspc rule -a Yad state=floating sticky=on  manage=on border=off 
 bspc rule -a Ulauncher state=floating border=off
 
-notify-send "bspwm" "bspwm config realoaded succesfully!"
 # end configuration = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =

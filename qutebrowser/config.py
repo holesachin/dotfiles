@@ -28,8 +28,10 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 
 c.content.javascript.modal_dialog = True
 
-config.set('content.local_content_can_access_remote_urls', True, 'file:///home/sachin/.local/share/qutebrowser/userscripts/*')
-config.set('content.local_content_can_access_file_urls', False, 'file:///home/sachin/.local/share/qutebrowser/userscripts/*')
+config.set('content.local_content_can_access_remote_urls', True, 'file:///home/sachin/.config/qutebrowser/userscripts/*')
+config.set('content.local_content_can_access_file_urls', False, 'file:///home/sachin/.config/qutebrowser/userscripts/*')
+
+c.scrolling.smooth = True
 
 c.content.plugins = True
 c.content.blocking.enabled = True;
@@ -70,4 +72,4 @@ config.bind('M', 'hint links spawn mpv --fs {hint-url}')
 config.bind('zs', 'config-cycle statusbar.show always never')
 config.bind('zb', 'config-cycle tabs.show always never')
 config.bind('zz', 'config-cycle statusbar.show always never ;; config-cycle tabs.show always never')
-
+config.bind('zd', 'config-cycle colors.webpage.darkmode.enabled true false')

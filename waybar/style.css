@@ -35,14 +35,14 @@ tooltip * {
 
 #workspaces {
 	font-family: ShureTechMono Nerd Font Mono;
-	font-size: 16px;
+	font-size: 14px;
 	color: @foreground;
-	padding: 0 2px 0 2px;
+	padding: 0 1px 0 1px;
 }
 
 #workspaces button {
 	color: alpha(@foreground, 0.7);
-	padding: 0 12px 0 0;
+	padding: 0 10px 0 0;
 	margin: 0 3px 0 0;
 }
 

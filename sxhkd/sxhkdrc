@@ -6,7 +6,7 @@
 
 # Terminal tmux (kitty)
 super + Return
-  pgrep kitty && bspc desktop -f "1" || kitty #-e tmux -u attach -t "arch" >/dev/null || tmux -u new -s "arch" 
+  pgrep kitty && bspc desktop -f "1" || alacritty #-e tmux -u attach -t "arch" >/dev/null || tmux -u new -s "arch" 
 
 # Terminal (Alacritty)
 super + shift + Return
@@ -16,7 +16,7 @@ super + shift + Return
 
 # Rofi App Launcher
 super + d
-  ~/.config/rofi/launchers/type-7/launcher.sh
+  rofi -show drun -theme ~/.config/rofi/config.rasi
 
 super + {r,c,e,n,w,s} 
 	rofi -show {run,calc,emoji,wifimenu,window,search}  
@@ -56,9 +56,7 @@ super + shift + {f,e,b}
 
 # zen-browser
 super + shift + w
-  pgrep zen && bspc desktop -f "2" || zen-browser
-super + w
-  pgrep zen && bspc desktop -f "2" || zen-browser
+  pgrep zen && bspc desktop -f "2" || zen-beta
 
 # scratch pad 
 alt + Return

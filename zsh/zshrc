@@ -1,3 +1,6 @@
+#
+#
+
 # path
 export PATH="${PATH}:${HOME}/go/bin:${HOME}/.local/scripts"
 export FZF_DEFAULT_OPTS="--info inline --no-scrollbar --color 'gutter:-1'"
@@ -18,17 +21,18 @@ export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/opt/android-studio/bin
-export CAPACITOR_ANDROID_STUDIO_PATH=/opt/android-studio/bin/studio.sh 
+export CAPACITOR_ANDROID_STUDIO_PATH=/etc/profiles/per-user/sachin/bin/android-studio
 
 # general alias
 alias nixup='sudo nixos-rebuild switch --impure --flake ~/nxc\#nixos'
 alias vim='nvim'
 alias vi='nvim'
 alias t="tmux -u attach -t ${HOST} || tmux -u new -s ${HOST}"
+alias t="tmux -u attach -t ${HOST} || tmux -u new -s ${HOST}"
 
 # zsh promp
 # PS1="%F{green}%B%m%b%f %1~ - "
-PS1="%F{blue}[%F{yellow} %1~ %F{blue}]%F{green} %f"
+PS1="%F{blue}[%F{green} $(grep '^ID=' /etc/os-release | cut -d'=' -f2):%F{purple}%1~ %F{blue}]%F{green} %f"
 
 # show session name in prompt if in tmux
 # if [[ ${TERM_PROGRAM} == "tmux" ]]; then
@@ -43,8 +47,11 @@ compinit
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-# fzf
+# fzf completion
 source <(fzf --zsh)
+
+# exercism completion
+source <( exercism completion zsh)
 
 # set zsh key
 bindkey -v
