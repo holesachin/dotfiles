@@ -5,11 +5,6 @@ return {
 		'mbbill/undotree'
 	},
 
-	-- Just Lsp Server Configurations
-	{
-		"neovim/nvim-lspconfig",
-	},
-
 	-- Markdown
 	{
 		'MeanderingProgrammer/render-markdown.nvim',
