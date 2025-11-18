@@ -33,7 +33,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 
 -- Autosave with debounce
 vim.api.nvim_create_autocmd({ "TextChanged", "TextChangedI" }, {
-	pattern = { "*.ts", "*.tsx", "*.js", "*.jsx", "*.go", "*.html", "*.css", "*.json", "*.vue", "*.svelte" },
+	pattern = { "*.lua", "*.ts", "*.tsx", "*.js", "*.jsx", "*.go", "*.html", "*.css", "*.json", "*.vue", "*.svelte" },
 	callback = function()
 		if vim.api.nvim_buf_get_name(0) ~= "" and vim.bo.buflisted then
 			timer:stop()
@@ -78,3 +78,34 @@ vim.api.nvim_create_autocmd('FileType', {
 	end
 })
 
+-- open help in new buffer
+vim.api.nvim_create_autocmd('FileType', {
+	group    = bufcheck,
+	pattern  = 'help',
+	command  = 'wincmd o',
+})
+
+-- run only if we're inside tmux
+local function tmux_set(pos)
+	if os.getenv("TMUX") then
+		vim.system({ "tmux", "set", "-g", "status-position", pos })
+	end
+end
+
+-- when Neovim gains focus → put status bar on top
+vim.api.nvim_create_autocmd({ "VimEnter", "FocusGained" }, {
+	group    = bufcheck,
+	callback = function()
+		tmux_set("top")
+		vim.opt_local.cursorline = true
+	end,
+})
+
+-- when Neovim loses focus OR exits → put status bar at the bottom
+vim.api.nvim_create_autocmd({ "VimLeavePre", "FocusLost" }, {
+	group    = bufcheck,
+	callback = function()
+		vim.opt_local.cursorline = true
+		tmux_set("bottom")
+	end,
+})

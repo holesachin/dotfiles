@@ -5,7 +5,6 @@ return {
 	config = function() 
 		require('persistence').setup({
 			dir = vim.fn.stdpath("state") .. "/sessions/",
-			need = 0,
 		})
 
 		-- load the session for the current directory

@@ -1,6 +1,7 @@
 return {
 	"holesachin/tmuxstatus.nvim",
 	-- dir = "~/project/tmuxstatus.nvim",
+	enabled = false, -- not vim.g.neovide,
 	config = function() 
 		require('tmuxstatus').setup({
 

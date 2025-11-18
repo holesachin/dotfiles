@@ -7,7 +7,7 @@ return {
 		config = function() 
 			require('onedarkpro').setup({
 				options = {
-					transparency = true,
+					transparency = not vim.g.neovide,
 				},
 			})
 			vim.cmd[[colorscheme onedark]]
@@ -20,7 +20,7 @@ return {
 		enabled = true,
 		config = function() 
 			require('dracula').setup({
-					transparent_bg = true,
+				transparent_bg = not vim.g.neovide,
 			})
 			vim.cmd[[colorscheme dracula]]
 		end
@@ -33,7 +33,7 @@ return {
 		enabled = false,
 		config = function()
 			require('github-theme').setup({
-				options = { transparent = true, }
+				options = { transparent = not vim.g.neovide, },
 			})
 
 			vim.cmd('colorscheme github_dark_dimmed')

@@ -1,5 +1,6 @@
 return {
 	'nvim-mini/mini.pick',
+	enabled = true,
 	dependencies = { 
 		'nvim-mini/mini.extra',
 		'nvim-tree/nvim-web-devicons'

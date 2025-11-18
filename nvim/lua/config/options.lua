@@ -46,7 +46,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "no"
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -63,8 +63,6 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 -- Sets how neovim will display certain whitespace in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
 
@@ -115,7 +113,32 @@ vim.cmd("hi Search guibg=NONE ctermbg=NONE")     -- Transparent search highlight
 -- Neovide Options
 if vim.g.neovide then 
 
-  vim.o.guifont = "ShureTechMono Nerd Font:h12"
+  vim.o.guifont = "ShureTechMono Nerd Font Propo:h11"
+
+	vim.g.neovide_theme = "background"
+
+	vim.g.neovide_padding_top = 10
+	vim.g.neovide_padding_right = 10
+	vim.g.neovide_padding_bottom = 10
+	vim.g.neovide_padding_left = 10
+
   vim.g.neovide_refresh_rate = 75
+  vim.g.neovide_refresh_rate_idle = 1
+
+	vim.g.neovide_cursor_vfx_mode = "ripple"
+
+	vim.g.neovide_opacity = 0.90
+
+	vim.g.neovide_refresh_rate = 75
+               
+	vim.g.neovide_scroll_animation_length = 0.3
+
+	-- Teminal
+	vim.o.laststatus = 0
+	vim.cmd([[
+	terminal tmux -u attach -t ${HOST} || tmux -u new -s ${HOST}
+	startinsert
+	autocmd BufLeave term://* quit
+  ]])
 
 end

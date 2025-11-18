@@ -15,7 +15,6 @@ return {
 
 			windows = {
 				preview = true,
-
 				width_focus = 30,
 				width_preview = 70,
 			},
@@ -23,48 +22,45 @@ return {
 			-- open&close minifiles
 			vim.keymap.set('n', '<leader>n', '<Cmd>lua MiniFiles.open()<CR>', { silent = true, desc = "Open MiniFiles in current working Directory." }),
 			vim.keymap.set('n', '<Esc>', '<Cmd>lua MiniFiles.close()<CR>', { silent = true, desc = "Close MiniFiles." }),
-			vim.keymap.set('n', '<leader>m', '<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>',
-				{ silent = true, desc = "Open MiniFiles in current 'FILEs' Directory." }),
+			vim.keymap.set('n', '<leader>m', '<Cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0))<CR>', { silent = true, desc = "Open MiniFiles in current 'FILEs' Directory." }),
 
 			-- Custom Keymaps
 			vim.api.nvim_create_autocmd("FileType", {
 				pattern = "minifiles",
 				callback = function()
 					-- import minifiles module
-					local mini_files = require('mini.files')
+					local MiniFiles = require('mini.files')
 
-					-- open new tmux pane in selected directory
-					vim.keymap.set("n", ",", function()
-						-- Get the current entry using 'get_fs_entry()'
-						local curr_entry = mini_files.get_fs_entry()
-						if curr_entry and curr_entry.fs_type == "directory" then
-							-- Call tmux pane function with the directory path
-							vim.system({ "tmux", "split-window", "-v", "-l", "20%", "-c", curr_entry.path })
+					-- coppy current file fullpath to clipboard
+					vim.keymap.set("n", "<leader>yy", function()
+						local curr_entry = MiniFiles.get_fs_entry()
+						if curr_entry then
+							-- Copy the full path of the current file to the clipboard
+							vim.fn.setreg('+', curr_entry.path)
+							vim.notify("File path copied to clipboard", vim.log.levels.INFO)
 						else
-							-- Notify if not a directory or no entry is selected
-							vim.notify("Not a directory or no entry selected", vim.log.levels.WARN)
+							-- Notify if no entry is selected
+							vim.notify("No entry selected", vim.log.levels.WARN)
 						end
 					end, { buffer = true, noremap = true, silent = true })
 
-					-- zip selected directory
-					vim.keymap.set("n", "<leader>z", function()
-						-- Get the current entry using 'get_fs_entry()'
-						local curr_entry = mini_files.get_fs_entry()
-						local dir_name = vim.fs.basename(curr_entry.path)
-
-						if curr_entry and curr_entry.fs_type == "directory" then
-							-- Call tmux pane function with the directory path
-							vim.system({ "zip", "-r", dir_name .. ".zip", curr_entry.path })
-							vim.notify("Zip file created", vim.log.levels.INFO)
+					-- zip selected directory or file and copy to clipboard
+					vim.keymap.set("n", "<leader>yz", function()
+						local curr_entry = MiniFiles.get_fs_entry()
+						if curr_entry then
+							-- Zip the selected directory or file and copy the path to the clipboard
+							local zip_path = MiniFiles.zip(curr_entry.path)
+							vim.fn.setreg('+', zip_path)
+							vim.notify("Zip file path copied to clipboard", vim.log.levels.INFO)
 						else
-							-- Notify if not a directory or no entry is selected
-							vim.notify("Not a directory or no entry selected", vim.log.levels.WARN)
+							-- Notify if no entry is selected
+							vim.notify("No entry selected", vim.log.levels.WARN)
 						end
 					end, { buffer = true, noremap = true, silent = true })
 
 					-- preview image in sxiv
 					vim.keymap.set("n", "<space>pi", function()
-						local curr_entry = mini_files.get_fs_entry()
+						local curr_entry = MiniFiles.get_fs_entry()
 						if curr_entry then
 							-- Preview the file using Quick Look
 							vim.system({ "sxiv", "-b", curr_entry.path }, {
