@@ -29,6 +29,7 @@ alias vim='nvim'
 alias vi='nvim'
 alias t="tmux -u attach -t ${HOST} || tmux -u new -s ${HOST}"
 alias t="tmux -u attach -t ${HOST} || tmux -u new -s ${HOST}"
+alias cp="rsync -av --progress"
 
 # zsh promp
 # PS1="%F{green}%B%m%b%f %1~ - "
@@ -52,6 +53,9 @@ source <(fzf --zsh)
 
 # exercism completion
 source <( exercism completion zsh)
+
+# tailscale completion
+source <(tailscale completion zsh)
 
 # set zsh key
 bindkey -v

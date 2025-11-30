@@ -55,6 +55,8 @@ c.url.searchengines = {
     'DEFAULT': 'https://www.google.com/search?q={}', 
     'yt': 'https://www.youtube.com/results?search_query={}',
     "aw": "https://wiki.archlinux.org/?search={}",
+    "wk": "https://en.wikipedia.org/wiki/{}",
+    "wb": "https://en.wikibooks.org/wiki/{}",
 }
 
 c.url.start_pages = 'file:///home/sachin/.config/qutebrowser/homepage.html'

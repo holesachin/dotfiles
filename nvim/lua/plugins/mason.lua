@@ -17,6 +17,7 @@ return {
 				"gopls",                       -- Go LSP
 				"typescript-language-server",  -- TypeScript LSP
 				"tailwindcss-language-server", -- Tailwind CSS LSP
+				"astro-language-server",       -- Astrojs LSP
 				"html-lsp",                    -- HTML LSP
 				"css-lsp",                     -- CSS LSP
 				"hyprls",
@@ -40,6 +41,7 @@ return {
 
 				-- Optional but useful additions
 				"markdownlint", -- Markdown linting
+				"mdx-analyzer", -- Mdx
 				"yamllint",     -- YAML linting
 				"jsonlint",     -- JSON linting
 			}
