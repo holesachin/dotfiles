@@ -28,7 +28,6 @@ alias nixup='sudo nixos-rebuild switch --impure --flake ~/nxc\#nixos'
 alias vim='nvim'
 alias vi='nvim'
 alias t="tmux -u attach -t ${HOST} || tmux -u new -s ${HOST}"
-alias t="tmux -u attach -t ${HOST} || tmux -u new -s ${HOST}"
 alias cp="rsync -av --progress"
 
 # zsh promp
@@ -52,7 +51,7 @@ autoload -Uz _zinit
 source <(fzf --zsh)
 
 # exercism completion
-source <( exercism completion zsh)
+# source <( exercism completion zsh)
 
 # tailscale completion
 source <(tailscale completion zsh)

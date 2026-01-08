@@ -39,3 +39,7 @@ vim.keymap.set('n', '<leader>u', '<cmd>UndotreeToggle<CR>', { desc = "Toggle Und
 
 -- Unhighlight search
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Unhighlight search' })
+
+-- Format with Biome/LSP
+vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format() end, { desc = '[F]ormat buffer' })
+vim.keymap.set('n', '<leader>ca', '<cmd>!biome check --apply %<CR>', { desc = '[A]pply Biome fixes' })

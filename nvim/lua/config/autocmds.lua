@@ -86,26 +86,26 @@ vim.api.nvim_create_autocmd('FileType', {
 })
 
 -- run only if we're inside tmux
-local function tmux_set(pos)
-	if os.getenv("TMUX") then
-		vim.system({ "tmux", "set", "-g", "status-position", pos })
-	end
-end
+-- local function tmux_set(pos)
+-- 	if os.getenv("TMUX") then
+-- 		vim.system({ "tmux", "set", "-g", "status-position", pos })
+-- 	end
+-- end
 
 -- when Neovim gains focus → put status bar on top
-vim.api.nvim_create_autocmd({ "VimEnter", "FocusGained" }, {
-	group    = bufcheck,
-	callback = function()
-		tmux_set("top")
-		vim.opt_local.cursorline = true
-	end,
-})
+-- vim.api.nvim_create_autocmd({ "VimEnter", "FocusGained" }, {
+-- 	group    = bufcheck,
+-- 	callback = function()
+-- 		tmux_set("top")
+-- 		vim.opt_local.cursorline = true
+-- 	end,
+-- })
 
 -- when Neovim loses focus OR exits → put status bar at the bottom
-vim.api.nvim_create_autocmd({ "VimLeavePre", "FocusLost" }, {
-	group    = bufcheck,
-	callback = function()
-		vim.opt_local.cursorline = true
-		tmux_set("bottom")
-	end,
-})
+-- vim.api.nvim_create_autocmd({ "VimLeavePre", "FocusLost" }, {
+-- 	group    = bufcheck,
+-- 	callback = function()
+-- 		vim.opt_local.cursorline = true
+-- 		tmux_set("bottom")
+-- 	end,
+-- })

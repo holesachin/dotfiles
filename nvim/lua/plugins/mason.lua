@@ -22,6 +22,7 @@ return {
 				"css-lsp",                     -- CSS LSP
 				"hyprls",
 				"nil_ls",
+				"biome",                       -- Biome JS (format + lint)
 
 				-- Formatters (for conform.nvim and general use)
 				"stylua",
