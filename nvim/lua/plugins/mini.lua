@@ -1,112 +1,102 @@
 return {
-
 	-- mini.extra
 	{
-		"nvim-mini/mini.extra",
-		config = function()
-			require("mini.extra").setup()
-		end,
+		'nvim-mini/mini.extra',
+		event = 'VeryLazy',
+		config = function() require('mini.extra').setup() end,
 	},
 
 	-- mini.ai
 	{
-		"nvim-mini/mini.ai",
-		config = function()
-			require("mini.ai").setup({ n_lines = 500 })
-		end,
+		'nvim-mini/mini.ai',
+		event = 'VeryLazy',
+		config = function() require('mini.ai').setup({ n_lines = 500 }) end,
 	},
-	
+
 	-- mini.surround
 	{
-		"nvim-mini/mini.surround",
-		config = function()
-			require("mini.surround").setup()
-		end,
+		'nvim-mini/mini.surround',
+		event = 'VeryLazy',
+		config = function() require('mini.surround').setup() end,
 	},
-	
+
 	-- mini.diff
 	{
-		"nvim-mini/mini.diff",
-		event = "VeryLazy",
-		config = function()
-			require("mini.diff").setup()
-		end,
+		'nvim-mini/mini.diff',
+		event = 'VeryLazy',
+		config = function() require('mini.diff').setup() end,
 	},
 
 	-- mini.statusline
 	{
-		"nvim-mini/mini.statusline",
+		'nvim-mini/mini.statusline',
+		event = 'VeryLazy',
 		config = function()
-			require("mini.statusline").setup({
+			require('mini.statusline').setup({
 				use_icons = vim.g.have_nerd_font,
 				set_vim_settings = false,
 			})
-			vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
-			vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
-			vim.api.nvim_set_hl(0, "MiniStatuslineFilename", { bg = "NONE" })
+			vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'NONE' })
+			vim.api.nvim_set_hl(0, 'StatusLineNC', { bg = 'NONE' })
+			vim.api.nvim_set_hl(0, 'MiniStatuslineFilename', { bg = 'NONE' })
 		end,
 	},
 
 	-- mini.animate
 	{
-		"nvim-mini/mini.animate",
-		config = function()
-			require("mini.animate").setup()
-		end,
+		'nvim-mini/mini.animate',
+		event = 'VeryLazy',
+		config = function() require('mini.animate').setup() end,
 	},
 
 	-- mini.pairs
 	{
-		"nvim-mini/mini.pairs",
-		config = function()
-			require("mini.pairs").setup()
-		end,
+		'nvim-mini/mini.pairs',
+		event = 'VeryLazy',
+		config = function() require('mini.pairs').setup() end,
 	},
 
-	-- mini.indentscope (bracket connector lines)
+	-- mini.indentscope
 	{
-		"nvim-mini/mini.indentscope",
+		'nvim-mini/mini.indentscope',
+		event = 'VeryLazy',
 		config = function()
-			require("mini.indentscope").setup({
-				symbol = "| ",
+			require('mini.indentscope').setup({
+				symbol = '| ',
 				options = { try_as_border = true },
 			})
-			-- vim.api.nvim_set_hl(0, "MiniIndentscopeSymbol", { fg = "magenta" })
 		end,
 	},
 
 	-- mini.comment
 	{
-		"nvim-mini/mini.comment",
-		config = function()
-			require("mini.comment").setup()
-		end,
+		'nvim-mini/mini.comment',
+		event = 'VeryLazy',
+		config = function() require('mini.comment').setup() end,
 	},
 
 	-- mini.notify
-	{
-		"nvim-mini/mini.notify",
-		config = function()
-			require("mini.notify").setup({
-				lsp_progress = {
-					enable = true,
-					level = 'INFO',
-					duration_last = 3000,
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	'nvim-mini/mini.notify',
+	-- 	event = 'VeryLazy',
+	-- 	config = function()
+	-- 		require('mini.notify').setup({
+	-- 			lsp_progress = { enable = true, level = 'INFO', duration_last = 3000 },
+	-- 		})
+	-- 	end,
+	-- },
 
 	-- mini.hipatterns
 	{
-		"nvim-mini/mini.hipatterns",
+		'nvim-mini/mini.hipatterns',
+		event = 'VeryLazy',
 		config = function()
-			require("mini.hipatterns").setup({
+			require('mini.hipatterns').setup({
 				highlighters = {
 					fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
-					hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
-					todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
-					note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
+					hack = { pattern = '%f[%w]()HACK()%f[%W]', group = 'MiniHipatternsHack' },
+					todo = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
+					note = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
 				},
 			})
 		end,

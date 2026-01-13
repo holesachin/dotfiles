@@ -5,13 +5,6 @@ return {
 		'mbbill/undotree'
 	},
 
-	-- MDX
-	{
-		"davidmh/mdx.nvim",
-		config = true,
-		dependencies = {"nvim-treesitter/nvim-treesitter"}
-	},
-
 	-- Markdown
 	{
 		'MeanderingProgrammer/render-markdown.nvim',

@@ -7,43 +7,46 @@ return {
 	},
 
 	config = function()
-		require("blink.cmp").setup({
-			snippets = { preset = "luasnip" },
+		local blink = require('blink.cmp')
+		
+		blink.setup({
+			snippets = { preset = 'luasnip' },
 			signature = { enabled = true },
+			
 			appearance = {
 				use_nvim_cmp_as_default = false,
-				nerd_font_variant = "normal",
+				nerd_font_variant = 'normal',
 			},
+			
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer" },
+				default = { 'lsp', 'path', 'snippets', 'buffer' },
 				providers = {
-					cmdline = {
-						min_keyword_length = 2,
-					},
+					cmdline = { min_keyword_length = 2 },
 				},
 			},
-			keymap = {
-				["<C-i>"] = {},
-			},
+			
+			keymap = { ['<C-i>'] = {} },
+			
 			cmdline = {
 				enabled = false,
 				completion = { menu = { auto_show = true } },
 				keymap = {
-					["<CR>"] = { "accept_and_enter", "fallback" },
+					['<CR>'] = { 'accept_and_enter', 'fallback' },
 				},
 			},
+			
 			completion = {
 				menu = {
 					border = nil,
 					scrolloff = 1,
 					scrollbar = false,
 					draw = {
-						treesitter = { "lsp" },
+						treesitter = { 'lsp' },
 						columns = {
-							{ "kind_icon" },
-							{ "label",      "label_description", gap = 1 },
-							{ "kind" },
-							{ "source_name" },
+							{ 'kind_icon' },
+							{ 'label', 'label_description', gap = 1 },
+							{ 'kind' },
+							{ 'source_name' },
 						},
 					},
 				},
@@ -59,6 +62,6 @@ return {
 			},
 		})
 
-		require("luasnip.loaders.from_vscode").lazy_load()
+		require('luasnip.loaders.from_vscode').lazy_load()
 	end
 }

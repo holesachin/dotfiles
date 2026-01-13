@@ -1,23 +1,22 @@
 
+local diagnostic_severity = vim.diagnostic.severity
+
 vim.diagnostic.config({
-	-- virtual_lines = true,
 	virtual_text = true,
 	underline = true,
 	update_in_insert = false,
 	severity_sort = true,
-	float = {
-		source = true,
-	},
+	float = { source = true },
 	signs = {
 		text = {
-			[vim.diagnostic.severity.ERROR] = "󰅚 ",
-			[vim.diagnostic.severity.WARN] = "󰀪 ",
-			[vim.diagnostic.severity.INFO] = "󰋽 ",
-			[vim.diagnostic.severity.HINT] = "󰌶 ",
+			[diagnostic_severity.ERROR] = "",
+			[diagnostic_severity.WARN] = "",
+			[diagnostic_severity.INFO] = "",
+			[diagnostic_severity.HINT] = "",
 		},
 		numhl = {
-			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
-			[vim.diagnostic.severity.WARN] = "WarningMsg",
+			[diagnostic_severity.ERROR] = "ErrorMsg",
+			[diagnostic_severity.WARN] = "WarningMsg",
 		},
 	},
 })

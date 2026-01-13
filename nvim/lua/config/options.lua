@@ -1,144 +1,109 @@
--- Set <space> as the leader key
-vim.g.mapleader = " " --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+-- Leader keys (must be set before plugins)
+vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Set to true if you have a Nerd Font installed
+-- UI settings
 vim.g.have_nerd_font = true
+vim.opt.background = "dark"
+vim.o.termguicolors = true
 
--- netrw
+-- Netrw configuration
 vim.g.netrw_banner = 0
 vim.g.netrw_browse_split = 0
--- vim.g.netrw_altv = 3
 vim.g.netrw_liststyle = 3
 
--- remove tilde
+-- Editor appearance
 vim.opt.fillchars = { eob = " " }
-
--- triggers CursorHold event faster
-vim.opt.updatetime = 200
-
--- Make line numbers default
 vim.opt.number = true
--- You can also add relative line numbers, for help with jumping.
---  Experiment for yourself to see if you like it!
 vim.opt.relativenumber = true
-
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = "a"
-
--- Don't show the mode, since it's already in status line
 vim.opt.showmode = false
 vim.opt.laststatus = 3
+vim.opt.cursorline = true
+vim.opt.signcolumn = "no"
 
--- Sync clipboard between OS and Neovim.
+-- Behavior settings
+vim.opt.mouse = "a"
 vim.opt.clipboard = "unnamedplus"
-
--- Enable break indent
 vim.opt.breakindent = true
-
--- Save undo history
 vim.opt.undofile = true
-
 vim.opt.autoread = true
 
--- Case-insensitive searching UNLESS \C or capital in search
+-- Search configuration
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- Keep signcolumn on by default
-vim.opt.signcolumn = "no"
-
--- Decrease update time
+-- Timing settings
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
 
--- Tabs & Indentation
+-- Indentation
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
--- vim.opt.expandtab = true
 vim.opt.autoindent = true
 
--- Configure how new splits should be opened
+-- Split behavior
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
--- Sets how neovim will display certain whitespace in the editor.
+-- Whitespace display
 vim.opt.list = true
 vim.opt.listchars = { tab = "| ", trail = "·", nbsp = "␣" }
 
--- Preview substitutions live, as you type!
+-- Live preview
 vim.opt.inccommand = "split"
 
--- Show which line your cursor is on
-vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
+-- Scrolling
 vim.opt.scrolloff = 20
 
--- Auto Session
+-- Session management
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
--- Command-line completion
+-- Command completion
 vim.opt.wildmenu = true
 vim.opt.wildmode = "longest:full,full"
 vim.opt.wildignore:append({ "*.o", "*.obj", "*.pyc", "*.class", "*.jar" })
 
--- Better diff options
+-- Diff improvements
 vim.opt.diffopt:append("linematch:60")
 
--- Performance improvements
+-- Performance
 vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
 
--- Set retrobox colorscheme
--- vim.cmd("colorscheme retrobox")
--- vim.g.retrobox_contrast = "high"
+-- Transparent backgrounds
+local transparent_highlights = {
+  "Normal", "StatusLine", "VertSplit", "TabLine", 
+  "LineNr", "SignColumn", "Pmenu", "Search"
+}
 
--- Set background color
-vim.opt.background = "dark" -- "light" for light themes
+for _, hl in ipairs(transparent_highlights) do
+  vim.cmd("hi " .. hl .. " guibg=NONE ctermbg=NONE")
+end
 
-vim.o.termguicolors = true
-
--- Transparent background for Neovim UI elements
-vim.cmd("hi Normal guibg=NONE ctermbg=NONE")     -- Transparent background for normal text
-vim.cmd("hi StatusLine guibg=NONE ctermbg=NONE") -- Transparent status line
-vim.cmd("hi VertSplit guibg=NONE ctermbg=NONE")  -- Transparent vertical split lines
-vim.cmd("hi TabLine guibg=NONE ctermbg=NONE")    -- Transparent tab line
-vim.cmd("hi LineNr guibg=NONE ctermbg=NONE")     -- Transparent line numbers
-vim.cmd("hi SignColumn guibg=NONE ctermbg=NONE") -- Transparent sign column (for diagnostics)
-vim.cmd("hi Pmenu guibg=NONE ctermbg=NONE")      -- Transparent popup menu (e.g., completion)
--- vim.cmd("hi CursorLine guibg=NONE ctermbg=NONE") -- Transparent cursor line
-vim.cmd("hi Search guibg=NONE ctermbg=NONE")     -- Transparent search highlights
-
--- Neovide Options
-if vim.g.neovide then 
-
+-- Neovide configuration
+if vim.g.neovide then
   vim.o.guifont = "ShureTechMono Nerd Font Propo:h11"
-
-	vim.g.neovide_theme = "background"
-
-	vim.g.neovide_padding_top = 10
-	vim.g.neovide_padding_right = 10
-	vim.g.neovide_padding_bottom = 10
-	vim.g.neovide_padding_left = 10
-
+  vim.g.neovide_theme = "background"
+  
+  -- Padding
+  local padding = 10
+  vim.g.neovide_padding_top = padding
+  vim.g.neovide_padding_right = padding
+  vim.g.neovide_padding_bottom = padding
+  vim.g.neovide_padding_left = padding
+  
+  -- Performance
   vim.g.neovide_refresh_rate = 75
   vim.g.neovide_refresh_rate_idle = 1
-
-	vim.g.neovide_cursor_vfx_mode = "ripple"
-
-	vim.g.neovide_opacity = 0.90
-
-	vim.g.neovide_refresh_rate = 75
-               
-	vim.g.neovide_scroll_animation_length = 0.3
-
-	-- Teminal
-	vim.o.laststatus = 0
-	vim.cmd([[
-	terminal tmux -u attach -t ${HOST} || tmux -u new -s ${HOST}
-	startinsert
-	autocmd BufLeave term://* quit
+  vim.g.neovide_cursor_vfx_mode = "ripple"
+  vim.g.neovide_opacity = 0.90
+  vim.g.neovide_scroll_animation_length = 0.3
+  
+  -- Terminal
+  vim.o.laststatus = 0
+  vim.cmd([[
+    terminal tmux -u attach -t ${HOST} || tmux -u new -s ${HOST}
+    startinsert
+    autocmd BufLeave term://* quit
   ]])
-
 end
