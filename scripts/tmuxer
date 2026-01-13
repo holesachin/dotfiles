@@ -3,7 +3,8 @@
 # tmux-sessionizer - Quickly create or switch to tmux sessions based on project directories
 #
 
-DEFAULT_SESSION="$(hostname)" 
+# === CONFIGURATION ===
+DEFAULT_SESSION="$(hostname)"
 
 DIRS=(
 	~/
@@ -11,80 +12,112 @@ DIRS=(
 	~/hobby
 	~/znox
 	~/dev
+	~/etc
 )
 
-# Directories that should show file listing
-FILE_LISTING_DIRS=(
+CONFIG_DIRS=(
 	~/dotfiles
 	~/nxc
 	~/dotfiles/scripts
 )
 
-IGNORE_PATTERN=".git|.svn|.hg|.bzr|.idea|.DS_Store" 
+IGNORE_PATTERN=".git|.svn|.hg|.bzr|.idea|.DS_Store"
 
-MENU="fzf --algo=v2 --no-scrollbar --no-border --tmux 100% --separator="-"\
+MENU="fzf --algo=v2 --no-scrollbar --no-border --tmux 100% --separator=\"-\" \
 	--color=gutter:-1,bg+:-1,fg+:183,fg:60,pointer:169 \
-	--info inline " 
+	--info inline"
 
-# Icons
-_tmux_icon=" "
-_dir_icon="󰉖 "
-_file_icon=" "
-_config_icon="󱁻 "
+declare -A ICONS
+ICONS[session]=" "
+ICONS[dir]="󰉖 "
+ICONS[file]=" "
+ICONS[config]="󱁻 "
 
-OPTIONS=$({ tmux ls 2>/dev/null | cut -d':' -f1 | sed "s/^/${_tmux_icon}/"; \
-	find "${DIRS[@]}" -mindepth 1 -maxdepth 1 -type d ! -name '.*' | sed "s|^/home/$USER/||" | grep -Ev "$IGNORE_PATTERN" | sed "s/^/${_dir_icon}/";
-})
+# === FUNCTIONS ===
 
-# Find directories and let user select one with fzf
-SELECTED_DIR=$(echo "$OPTIONS" | ${MENU:-fzf} | cut -d' ' -f2)
+# Build the options string with sessions and directories
+get_options() {
+	local sessions dirs
+	sessions=$(tmux ls 2>/dev/null | cut -d':' -f1 | sed "s/^/${ICONS[session]}/")
+	dirs=$(find "${DIRS[@]}" -mindepth 1 -maxdepth 1 -type d ! -name '.*' | sed "s|^$HOME/||" | grep -Ev "$IGNORE_PATTERN" | sed "s/^/${ICONS[dir]}/")
+	echo -e "$sessions\n$dirs"
+}
 
-# Exit if no directory was selected
-if [[ -z ${SELECTED_DIR} ]]; then
-	exit 0
-fi
+# Display menu and get user selection
+show_menu() {
+	local options="$1"
+	echo "$options" | ${MENU:-fzf} | cut -d' ' -f2
+}
 
-# Expand ~ to full path for comparison
-[[ ${SELECTED_DIR} != /* ]] && SELECTED_DIR="$HOME/${SELECTED_DIR}"
+# Check if selected directory is in config dirs
+is_config_dir() {
+	local dir="$1"
+	[[ " ${CONFIG_DIRS[@]} " =~ " $dir " ]]
+}
 
-# If directory is a file listing directory, list files and let user select one with fzf and open with nvim
-if [[ " ${FILE_LISTING_DIRS[@]} " =~ " ${SELECTED_DIR} " ]]; then
-	SELECTED_FILE=$(find "${SELECTED_DIR}" -mindepth 1 -type f ! -name '.*' | sed "s|^/home/$USER/||" | grep -Ev "$IGNORE_PATTERN" | sed "s/^/${_config_icon}/"  | ${MENU:-fzf} | cut -d' ' -f2)
-	if [[ -n ${SELECTED_FILE} ]]; then 
-		FILENAME=$(basename ${SELECTED_FILE})
-		# Check if a window with this filename already exists
-		EXISTING_WINDOW=$(tmux list-windows -t ${DEFAULT_SESSION} -F "#{window_index}:#{window_name}" 2>/dev/null | \
-			grep ":${FILENAME}$" | cut -d: -f1)
+# Handle file selection for config directories
+handle_file_selection() {
+	local selected_dir="$1"
+	local selected_file
+	selected_file=$(find "$selected_dir" -mindepth 1 -type f ! -name '.*' | sed "s|^$HOME/||" | grep -Ev "$IGNORE_PATTERN" | sed "s/^/${ICONS[config]}/" | show_menu)
 
-		if [[ -n ${EXISTING_WINDOW} ]]; then
-			# Window exists, just switch to it
-			tmux select-window -t ${DEFAULT_SESSION}:${EXISTING_WINDOW}
-			tmux switch-client -t ${DEFAULT_SESSION}
+	if [[ -n $selected_file ]]; then
+		local filename
+		filename=$(basename "$selected_file")
+		local existing_window
+		existing_window=$(tmux list-windows -t "$DEFAULT_SESSION" -F "#{window_index}:#{window_name}" 2>/dev/null | grep ":$filename$" | cut -d: -f1)
+
+		if [[ -n $existing_window ]]; then
+			tmux select-window -t "$DEFAULT_SESSION:$existing_window"
 		else
-			# Create new window with the file and set window name
-			tmux neww -t ${DEFAULT_SESSION} -n "${FILENAME}" "nvim '${SELECTED_FILE}'"
-			tmux switch-client -t ${DEFAULT_SESSION}
+			tmux neww -t "$DEFAULT_SESSION" -n "$filename" "nvim '$selected_file'"
 		fi
+		tmux switch-client -t "$DEFAULT_SESSION"
 	fi
-	exit
-fi
+}
 
-# Get the directory name to use as session name
-SESSION_NAME="$(basename ${SELECTED_DIR} | tr . _)"
+# Create or attach to tmux session
+create_or_attach_session() {
+	local session_name="$1"
+	local selected_dir="$2"
 
-# Check if we're inside tmux
-if [[ -z ${TMUX} ]]; then
-	# Not in tmux - create new session or attach to existing one
-	if tmux has-session -t "${SESSION_NAME}" 2>/dev/null; then
-		tmux attach-session -t "${SESSION_NAME}"
+	if [[ -z $TMUX ]]; then
+		# Not in tmux
+		if tmux has-session -t "$session_name" 2>/dev/null; then
+			tmux attach-session -t "$session_name"
+		else
+			tmux new-session -s "$session_name" -c "$selected_dir"
+		fi
 	else
-		tmux new-session -s "${SESSION_NAME}" -c "${SELECTED_DIR}"
+		# Inside tmux
+		if ! tmux has-session -t "$session_name" 2>/dev/null; then
+			tmux new-session -ds "$session_name" -c "$selected_dir"
+		fi
+		tmux switch-client -t "$session_name"
 	fi
-else
-	# Inside tmux - create session if it doesn't exist, then switch to it
-	if ! tmux has-session -t "${SESSION_NAME}" 2>/dev/null; then
-		tmux new-session -ds "${SESSION_NAME}" -c "${SELECTED_DIR}"
-	fi
-	tmux switch-client -t "${SESSION_NAME}"
-fi
+}
 
+# === MAIN ===
+	local options selected_dir session_name
+	
+	# Get available options
+	options=$(get_options)
+	
+	# Show menu and get selection
+	selected_dir=$(show_menu "$options")
+	
+	# Exit if nothing selected
+	[[ -z $selected_dir ]] && exit 0
+	
+	# Expand path if relative
+	[[ $selected_dir != /* ]] && selected_dir="$HOME/$selected_dir"
+	
+	# Handle config directories (file listing)
+	if is_config_dir "$selected_dir"; then
+		handle_file_selection "$selected_dir"
+		exit 0
+	fi
+	
+	# Handle regular directories (session creation)
+	session_name=$(basename "$selected_dir" | tr . _)
+	create_or_attach_session "$session_name" "$selected_dir"
